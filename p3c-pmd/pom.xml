@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.alibaba.p3c</groupId>
   <artifactId>p3c-pmd</artifactId>
-  <version>2.0.1</version>
+  <version>2.0.6</version>
   <packaging>jar</packaging>
   <name>p3c-pmd</name>
   <properties>
@@ -136,9 +136,9 @@
         <executions>
           <execution>
             <phase>verify</phase>
-            <goals>
+            <!--<goals>
               <goal>check</goal>
-            </goals>
+            </goals>-->
           </execution>
         </executions>
         <dependencies>
@@ -234,7 +234,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+     <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.10.4</version>
@@ -253,7 +253,7 @@
             </tag>
           </tags>
         </configuration>
-      </plugin>
+      </plugin>-->
      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>

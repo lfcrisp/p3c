@@ -45,7 +45,7 @@ public class MethodParameterCountRule extends AbstractAliRule {
                         // 违反规则提示信息，第二个参数是提示信息位置，第三个参数是提示信息key，第四个参数用来替换提示信息
                         // 中的占位符，这里获取的节点image属性就是方法名称
                         addViolationWithMessage(data, methodNode,
-                                "java.oop.MethodParameterCountRule.violation.msg",
+                                "java.zyzx.MethodParameterCountRule.violation.msg",
                                 new Object[]{methodNode.getImage()});
                     }
                 }
