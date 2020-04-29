@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="MethodParameterCountRule">
+        <![CDATA[
+    public class Foo {
+    public void methodB(int a, int b, int c, int d, int e) {
+
+    }
+    }
+        ]]>
+    </code-fragment>
+    <test-code>
+        <description>MethodParameterCountRule</description>
+        <expected-problems>0</expected-problems>
+       <!-- <expected-linenumbers>3,8</expected-linenumbers>-->
+        <code-ref id="MethodParameterCountRule"/>
+    </test-code>
+
+
+    <!-- ====================================================================== -->
+</test-data>

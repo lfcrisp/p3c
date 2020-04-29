@@ -23,7 +23,7 @@ Negative example:
         <example>
             <![CDATA[
 Positive example:
-    public void methodA() {
+    public void methodA(Obj o) {
 
     }
 ]]>
