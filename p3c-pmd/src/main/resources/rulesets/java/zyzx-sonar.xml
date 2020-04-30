@@ -155,6 +155,45 @@ Positive example:
 ]]>
         </example>
     </rule>
+    <rule name="EqualsOverridenWithHashCodeCheck"
+          language="java"
+          message="java.zyzx.EqualsOverridenWithHashCodeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.EqualsOverridenWithHashCodeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+class MyClass {    // Noncompliant - should also override "hashCode()"
+
+  @Override
+  public boolean equals(Object obj) {
+    /* ... */
+  }
+
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+class MyClass {    // Compliant
+
+  @Override
+  public boolean equals(Object obj) {
+    /* ... */
+  }
+
+  @Override
+  public int hashCode() {
+    /* ... */
+  }
+
+}
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
