@@ -57,4 +57,10 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"LongBitsToDoubleOnIntCheck");
         runTests(rule,"LongBitsToDoubleOnIntCheck");
     }
+
+    @Test
+    public void testMethodNamedEqualsCheck(){
+        Rule rule = this.findRule(RULESET,"MethodNamedEqualsCheck");
+        runTests(rule,"MethodNamedEqualsCheck");
+    }
 }
