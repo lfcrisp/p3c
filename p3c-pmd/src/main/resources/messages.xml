@@ -560,4 +560,13 @@
     <entry key="java.zyzx.MethodParameterCountRule.rule.msg">
         <![CDATA[说明：方法参数列表不允许超过（含）5个，建议封装到一个对象中。]]>
     </entry>
+    <entry key="java.zyzx.CompareToResultTestCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：尽管大多数compareTo方法返回-1、0或1，有些则不返回，并且将compareTo的结果与0以外的特定值进行测试可能会导致假阴性。 【%s】建议修改]]>
+    </entry>
+    <entry key="java.zyzx.CompareToReturnValueCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：compareTo只代表一个不等标识，不代表不等的程度，应返回-1,0,1标识。 【%s】建议修改]]>
+    </entry>
+    <entry key="java.zyzx.LongBitsToDoubleOnIntCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Double.longBitsToDouble返回给定的位所代表的double值,需要一个64位的long类型参数。]]>
+    </entry>
 </properties>

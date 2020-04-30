@@ -29,6 +29,73 @@ Positive example:
 ]]>
         </example>
     </rule>
+    <rule name="CompareToResultTestCheck"
+          language="java"
+          message="java.zyzx.CompareToResultTestCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CompareToResultTestCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    if (myClass.compareTo(arg) == -1) {  // Noncompliant
+        // ...
+    }
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    if (myClass.compareTo(arg) < 0) {
+        // ...
+    }
+]]>
+        </example>
+    </rule>
+    <rule name="CompareToReturnValueCheck"
+          language="java"
+          message="java.zyzx.CompareToReturnValueCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CompareToReturnValueCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+    public int compareTo(MyClass myclass) {
+      if (condition) {
+        return Integer.MIN_VALUE;  // Noncompliant
+      }
+     }
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+    public int compareTo(MyClass myclass) {
+      if (condition) {
+        return -1;
+      }
+    }
+]]>
+        </example>
+    </rule>
+    <rule name="LongBitsToDoubleOnIntCheck"
+          language="java"
+          message="java.zyzx.LongBitsToDoubleOnIntCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.LongBitsToDoubleOnIntCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+int i = 42;
+double d = Double.longBitsToDouble(i);  // Noncompliant
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

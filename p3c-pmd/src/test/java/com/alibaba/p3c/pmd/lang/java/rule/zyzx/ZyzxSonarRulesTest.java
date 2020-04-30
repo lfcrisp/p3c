@@ -22,8 +22,8 @@ import org.junit.Test;
 /**
  * Test for set rules.
  *
- * @author shengfang.gsf
- * @date 2016/12/13
+ * @author lifengchen
+ * @date 2020-04-30
  */
 public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
 
@@ -38,5 +38,23 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
     public void testMethodParameterCountRule(){
         Rule rule = this.findRule(RULESET,"MethodParameterCountRule");
         runTests(rule,"MethodParameterCountRule");
+    }
+
+    @Test
+    public void testCompareToResult(){
+        Rule rule = this.findRule(RULESET,"CompareToResultTestCheck");
+        runTests(rule,"CompareToResultTestCheck");
+    }
+
+    @Test
+    public void testCompareToReturn(){
+        Rule rule = this.findRule(RULESET,"CompareToReturnValueCheck");
+        runTests(rule,"CompareToReturnValueCheck");
+    }
+
+    @Test
+    public void testLongBitsToDoubleOnIntCheck(){
+        Rule rule = this.findRule(RULESET,"LongBitsToDoubleOnIntCheck");
+        runTests(rule,"LongBitsToDoubleOnIntCheck");
     }
 }
