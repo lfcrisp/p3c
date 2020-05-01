@@ -575,4 +575,13 @@
     <entry key="java.zyzx.EqualsOverridenWithHashCodeCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：Equals和hashCode必须成对重写，只重写任何一个都是错误的.]]>
     </entry>
+    <entry key="java.zyzx.ArrayHashCodeAndToStringCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：使用Arrays.toString(args)和Arrays.hashCode(args)代替.]]>
+    </entry>
+    <entry key="java.zyzx.HasNextCallingNextCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Iterator.next（）使迭代器前进一项。 因此，在Iterator.hasNext（）中调用它会破坏Iterator，并导致生产中出现意外行为.]]>
+    </entry>
+    <entry key="java.zyzx.IteratorNextExceptionCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：当迭代中没有更多元素时，java.util.Iterator.next（）方法的任何实现都会引发NoSuchElementException异常.]]>
+    </entry>
 </properties>

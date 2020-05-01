@@ -69,4 +69,22 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"EqualsOverridenWithHashCodeCheck");
         runTests(rule,"EqualsOverridenWithHashCodeCheck");
     }
+
+    @Test
+    public void testArrayHashCodeAndToStringCheck(){
+        Rule rule = this.findRule(RULESET,"ArrayHashCodeAndToStringCheck");
+        runTests(rule,"ArrayHashCodeAndToStringCheck");
+    }
+
+    @Test
+    public void testHasNextCallingNextCheck(){
+        Rule rule = this.findRule(RULESET,"HasNextCallingNextCheck");
+        runTests(rule,"HasNextCallingNextCheck");
+    }
+
+    @Test
+    public void testIteratorNextExceptionCheckk(){
+        Rule rule = this.findRule(RULESET,"IteratorNextExceptionCheck");
+        runTests(rule,"IteratorNextExceptionCheck");
+    }
 }

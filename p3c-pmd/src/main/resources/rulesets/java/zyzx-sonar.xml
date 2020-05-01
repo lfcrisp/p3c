@@ -194,6 +194,94 @@ class MyClass {    // Compliant
 ]]>
         </example>
     </rule>
+    <rule name="ArrayHashCodeAndToStringCheck"
+          language="java"
+          message="java.zyzx.ArrayHashCodeAndToStringCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ArrayHashCodeAndToStringCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public static void main( String[] args )
+{
+    String argStr = args.toString(); // Noncompliant
+    int argHash = args.hashCode(); // Noncompliant
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+public static void main( String[] args )
+{
+    String argStr = Arrays.toString(args);
+    int argHash = Arrays.hashCode(args);
+
+]]>
+        </example>
+    </rule>
+    <rule name="HasNextCallingNextCheck"
+          language="java"
+          message="java.zyzx.HasNextCallingNextCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.HasNextCallingNextCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public class FibonacciIterator implements Iterator<Integer>{
+...
+@Override
+public boolean hasNext() {
+  if(next() != null) {
+    return true;
+  }
+  return false;
+}
+...
+}
+]]>
+        </example>
+    </rule>
+    <rule name="IteratorNextExceptionCheck"
+          language="java"
+          message="java.zyzx.IteratorNextExceptionCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.IteratorNextExceptionCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public class MyIterator implements Iterator<String>{
+  ...
+  public String next(){
+    if(!hasNext()){
+      return null;
+    }
+    ...
+  }
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+public class MyIterator implements Iterator<String>{
+  ...
+  public String next(){
+    if(!hasNext()){
+      throw new NoSuchElementException();
+    }
+    ...
+  }
+}
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
