@@ -16,35 +16,42 @@ import java.util.List;
 public class EqualsOverridenWithHashCodeCheck extends AbstractAliRule {
 
     private static final String CLASSORINTERFACE = "ClassOrInterfaceBodyDeclaration";
-    private static final String MARKERANNOTATION = "Annotation/MarkerAnnotation/Name";
-    private static final String METHODDECLARATOR = "MethodDeclaration";
 
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
+            Boolean hasEquals = null;
+            Boolean hasCode = null;
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CLASSORINTERFACE);
-            //List<Node> methodDeclarator = node.findChildNodesWithXPath(METHODDECLARATOR);
             if (markerAnnotations != null || markerAnnotations.size() > 0) {
-                for (Node markerAnnotation:markerAnnotations) {
-                    if (markerAnnotation != null){
-                        Object o = visit(markerAnnotation, data);
-                    }
-                    String ss = markerAnnotation.getFirstChildOfType(ASTMarkerAnnotation.class).getAnnotationName();
-                    if ("override".equals(markerAnnotation.getFirstChildOfType(ASTMarkerAnnotation.class).getAnnotationName().toLowerCase())){
-                        System.out.println("hahahahahah");
+                for (int i = 0; i < markerAnnotations.size(); i++) {
+                    Node markerAnnotation = markerAnnotations.get(i);
+                    ASTAnnotation astAnnotation = markerAnnotation.getFirstChildOfType(ASTAnnotation.class);
+                    if (astAnnotation != null){
+                        String firstChildOfType = astAnnotation.getType().getName();
+                        if (firstChildOfType.toLowerCase().endsWith("override")){
+                            String methodName = markerAnnotation.jjtGetChild(1).jjtGetChild(1).getImage();
+                            if ("hashCode".equals(methodName) && hasCode == null){
+                                hasCode = true;
+                            }
+                            if ("equals".equals(methodName) && hasEquals == null){
+                                hasEquals = true;
+                            }
+                        }
                     }
                 }
             }
-            /*ASTMethodDeclaration methodDeclaratorNode = (ASTMethodDeclaration)markerAnnotation.get(0);
-            String methodDeclaratorName = methodDeclaratorNode.getName();
-            if ("equals".equals(methodDeclaratorName.toLowerCase()) ){
-                //String markerAnnotationName = markerAnnotation.get(0).getImage();
-                if (markerAnnotation == null || markerAnnotation.isEmpty()){
-                    addViolationWithMessage(data, node,
-                            "java.zyzx.EqualsOverridenWithHashCodeCheck.rule.msg", null);
-                }
-            }*/
+            boolean result = false;
+            if (hasCode == null){hasCode = false;}
+            if (hasEquals == null){hasEquals =false;}
+           if (hasCode.equals(hasEquals)){
+                result = true;
+            }
+            if (!result){
+                addViolationWithMessage(data, node,
+                        "java.zyzx.EqualsOverridenWithHashCodeCheck.rule.msg", null);
+            }
         } catch (JaxenException e) {
-            throw new RuntimeException("XPath expression " + METHODDECLARATOR + " failed: " + e.getLocalizedMessage(), e);
+            throw new RuntimeException("XPath expression " + CLASSORINTERFACE + " failed: " + e.getLocalizedMessage(), e);
         }
         return super.visit(node, data);
     }

@@ -23,6 +23,11 @@ public class Demo {
   public int hashCode() {
     /* ... */
   }
+
+@Override
+   public int test() {
+    /* ... */
+  }
 }
 
 
