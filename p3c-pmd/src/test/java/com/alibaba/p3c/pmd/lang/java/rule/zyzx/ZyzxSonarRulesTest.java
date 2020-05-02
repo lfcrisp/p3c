@@ -83,8 +83,26 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
     }
 
     @Test
-    public void testIteratorNextExceptionCheckk(){
+    public void testIteratorNextExceptionCheck(){
         Rule rule = this.findRule(RULESET,"IteratorNextExceptionCheck");
         runTests(rule,"IteratorNextExceptionCheck");
+    }
+
+    @Test
+    public void testPreparedStatementAndResultSetCheck(){
+        Rule rule = this.findRule(RULESET,"PreparedStatementAndResultSetCheck");
+        runTests(rule,"PreparedStatementAndResultSetCheck");
+    }
+
+    @Test
+    public void testUnusedReturnedDataCheck(){
+        Rule rule = this.findRule(RULESET,"UnusedReturnedDataCheck");
+        runTests(rule,"UnusedReturnedDataCheck");
+    }
+
+    @Test
+    public void testRunFinalizersCheck(){
+        Rule rule = this.findRule(RULESET,"RunFinalizersCheck");
+        runTests(rule,"RunFinalizersCheck");
     }
 }

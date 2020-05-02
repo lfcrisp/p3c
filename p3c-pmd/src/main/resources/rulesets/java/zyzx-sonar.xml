@@ -282,6 +282,117 @@ public class MyIterator implements Iterator<String>{
 ]]>
         </example>
     </rule>
+    <rule name="PreparedStatementAndResultSetCheck"
+          language="java"
+          message="java.zyzx.PreparedStatementAndResultSetCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PreparedStatementAndResultSetCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+PreparedStatement ps = con.prepareStatement("SELECT fname, lname FROM employees where hireDate > ? and salary < ?");
+ps.setDate(0, date);  // Noncompliant
+ps.setDouble(3, salary);  // Noncompliant
+
+ResultSet rs = ps.executeQuery();
+while (rs.next()) {
+  String fname = rs.getString(0);  // Noncompliant
+  // ...
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+PreparedStatement ps = con.prepareStatement("SELECT fname, lname FROM employees where hireDate > ? and salary < ?");
+ps.setDate(1, date);
+ps.setDouble(2, salary);
+
+ResultSet rs = ps.executeQuery();
+while (rs.next()) {
+  String fname = rs.getString(1);
+  // ...
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UnusedReturnedDataCheck"
+          language="java"
+          message="java.zyzx.UnusedReturnedDataCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.UnusedReturnedDataCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public void doSomethingWithFile(String fileName) {
+  BufferedReader buffReader = null;
+  try {
+    buffReader = new BufferedReader(new FileReader(fileName));
+    while (buffReader.readLine() != null) { // Noncompliant
+      // ...
+    }
+  } catch (IOException e) {
+    // ...
+  }
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+public void doSomethingWithFile(String fileName) {
+  BufferedReader buffReader = null;
+  try {
+    buffReader = new BufferedReader(new FileReader(fileName));
+    String line = null;
+    while ((line = buffReader.readLine()) != null) {
+      // ...
+    }
+  } catch (IOException e) {
+    // ...
+  }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="RunFinalizersCheck"
+          language="java"
+          message="java.zyzx.RunFinalizersCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.RunFinalizersCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public static void main(String [] args) {
+  ...
+  System.runFinalizersOnExit(true);  // Noncompliant
+  ...
+}
+
+protected void finalize(){
+  doSomething();
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+public static void main(String [] args) {
+  Runtime.addShutdownHook(new Runnable() {
+    public void run(){
+      doSomething();
+    }
+  });
+  //...
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

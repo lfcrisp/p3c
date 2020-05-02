@@ -54,6 +54,20 @@ public class EqualsOverridenWithHashCodeCheck extends AbstractAliRule {
             throw new RuntimeException("XPath expression " + CLASSORINTERFACE + " failed: " + e.getLocalizedMessage(), e);
         }
         return super.visit(node, data);
+
+        /*try {
+            List<Node> nodeList = node.findChildNodesWithXPath(
+                    "//ClassOrInterfaceBodyDeclaration[./Annotation[@AnnotationName = 'Override']]" +
+                            "//MethodDeclaration[@MethodName = 'hashCode' or @MethodName = 'equals']");
+            if (nodeList.size() == 1) {
+                addViolationWithMessage(data, nodeList.get(0),
+                        "java.set.EqualsOverridenWithHashCodeCheck.rule.msg");
+            }
+        } catch (JaxenException e) {
+            e.printStackTrace();
+        }
+        return super.visit(node, data);*/
+
     }
 }
 

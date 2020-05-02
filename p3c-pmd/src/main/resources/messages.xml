@@ -584,4 +584,13 @@
     <entry key="java.zyzx.IteratorNextExceptionCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：当迭代中没有更多元素时，java.util.Iterator.next（）方法的任何实现都会引发NoSuchElementException异常.]]>
     </entry>
+    <entry key="java.zyzx.PreparedStatementAndResultSetCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：PreparedStatement与ResultSet参数设置与获取数据由序号1开始而非0.]]>
+    </entry>
+    <entry key="java.zyzx.UnusedReturnedDataCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：BufferedReader.readLine(), Reader.read()及子类中的相关方法都应该先存储再比较.]]>
+    </entry>
+    <entry key="java.zyzx.RunFinalizersCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：runFinalizersOnExit本质上是不安全的,根据Oracle Javadoc：这可能会导致在活动对象上调用终结器，而其他线程正在同时操纵这些对象，从而导致行为不稳定或死锁,因不安全而被弃用.]]>
+    </entry>
 </properties>
