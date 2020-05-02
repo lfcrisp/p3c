@@ -105,4 +105,34 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"RunFinalizersCheck");
         runTests(rule,"RunFinalizersCheck");
     }
+
+    @Test
+    public void testScheduledThreadPoolExecutorZeroCheck(){
+        Rule rule = this.findRule(RULESET,"ScheduledThreadPoolExecutorZeroCheck");
+        runTests(rule,"ScheduledThreadPoolExecutorZeroCheck");
+    }
+
+    @Test
+    public void testInnerClassOfNonSerializableCheck(){
+        Rule rule = this.findRule(RULESET,"InnerClassOfNonSerializableCheck");
+        runTests(rule,"InnerClassOfNonSerializableCheck");
+    }
+
+    @Test
+    public void testStringBufferAndBuilderWithCharCheck(){
+        Rule rule = this.findRule(RULESET,"StringBufferAndBuilderWithCharCheck");
+        runTests(rule,"StringBufferAndBuilderWithCharCheck");
+    }
+
+    @Test
+    public void testObjectFinalizeOverridenCallsSuperFinalizeCheck(){
+        Rule rule = this.findRule(RULESET,"ObjectFinalizeOverridenCallsSuperFinalizeCheck");
+        runTests(rule,"ObjectFinalizeOverridenCallsSuperFinalizeCheck");
+    }
+
+    @Test
+    public void testThreadRunCheck(){
+        Rule rule = this.findRule(RULESET,"ThreadRunCheck");
+        runTests(rule,"ThreadRunCheck");
+    }
 }

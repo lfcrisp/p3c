@@ -593,4 +593,19 @@
     <entry key="java.zyzx.RunFinalizersCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：runFinalizersOnExit本质上是不安全的,根据Oracle Javadoc：这可能会导致在活动对象上调用终结器，而其他线程正在同时操纵这些对象，从而导致行为不稳定或死锁,因不安全而被弃用.]]>
     </entry>
+    <entry key="java.zyzx.ScheduledThreadPoolExecutorZeroCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：java.util.concurrent.ScheduledThreadPoolExecutor由属性corePoolSize指定线程池大小，如果设置为0表示线程执行器无线程可用且不做任何事.]]>
+    </entry>
+    <entry key="java.zyzx.InnerClassOfNonSerializableCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：序列化非静态内部类将导致尝试序列化外部类,如果外部类不是序列化类,会产生运行时异常，内部类静态化会避免这种情况.]]>
+    </entry>
+    <entry key="java.zyzx.StringBufferAndBuilderWithCharCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不能使用字符实例化StringBuilder或StringBuffer,会产生误导，因为大多数Java开发人员都希望字符是StringBuffer的初始值。实际发生的是，字符的int表示用于确定StringBuffer的初始大小。]]>
+    </entry>
+    <entry key="java.zyzx.ObjectFinalizeOverridenCallsSuperFinalizeCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：super.finalize()强烈建议在此方法实现的最后调用，以防父实现也必须处理一些系统资源。]]>
+    </entry>
+    <entry key="java.zyzx.ThreadRunCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Thread.run（）方法的目的是在单独的专用线程中执行代码。 直接调用此方法没有意义，因为它导致其代码在当前线程中执行。为了获得预期的行为，请改为调用Thread.start（）方法。]]>
+    </entry>
 </properties>

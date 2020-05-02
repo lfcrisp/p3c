@@ -393,6 +393,134 @@ public static void main(String [] args) {
 ]]>
         </example>
     </rule>
+    <rule name="ScheduledThreadPoolExecutorZeroCheck"
+          language="java"
+          message="java.zyzx.ScheduledThreadPoolExecutorZeroCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ScheduledThreadPoolExecutorZeroCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public void do(){
+
+  ScheduledThreadPoolExecutor stpe1 = new ScheduledThreadPoolExecutor(0); // Noncompliant
+
+  ScheduledThreadPoolExecutor stpe2 = new ScheduledThreadPoolExecutor(POOL_SIZE);
+  stpe2.setCorePoolSize(0);  // Noncompliant
+]]>
+        </example>
+    </rule>
+    <rule name="InnerClassOfNonSerializableCheck"
+          language="java"
+          message="java.zyzx.InnerClassOfNonSerializableCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.InnerClassOfNonSerializableCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+public class Pomegranate {
+  // ...
+
+  public class Seed implements Serializable {  // Noncompliant; serialization will fail
+    // ...
+  }
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+public class Pomegranate {
+  // ...
+
+  public static class Seed implements Serializable {
+    // ...
+  }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="StringBufferAndBuilderWithCharCheck"
+          language="java"
+          message="java.zyzx.StringBufferAndBuilderWithCharCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.StringBufferAndBuilderWithCharCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+     用字符实例化StringBuilder或StringBuffer会产生误导，因为大多数Java开发人员都希望字符是StringBuffer的初始值。实际发生的是，字符的int表示用于确定StringBuffer的初始大小。
+    StringBuffer foo = new StringBuffer('x');   //错误 等同于 StringBuffer foo = new StringBuffer(120);
+    StringBuffer foo = new StringBuffer("x");  //正确示例
+Negative example:
+StringBuffer foo = new StringBuffer('x');   //equivalent to StringBuffer foo = new StringBuffer(120);
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+StringBuffer foo = new StringBuffer("x");
+]]>
+        </example>
+    </rule>
+    <rule name="ObjectFinalizeOverridenCallsSuperFinalizeCheck"
+          language="java"
+          message="java.zyzx.ObjectFinalizeOverridenCallsSuperFinalizeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ObjectFinalizeOverridenCallsSuperFinalizeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+protected void finalize() {   // Noncompliant; no call to super.finalize();
+  releaseSomeResources();
+}
+
+protected void finalize() {
+  super.finalize();  // Noncompliant; this call should come last
+  releaseSomeResources();
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+protected void finalize() {
+  releaseSomeResources();
+  super.finalize();
+}
+]]>
+        </example>
+    </rule>
+    <rule name="ThreadRunCheck"
+          language="java"
+          message="java.zyzx.ThreadRunCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ThreadRunCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+Thread myThread = new Thread(runnable);
+myThread.run(); // Noncompliant
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+protected void finalize() {
+  releaseSomeResources();
+  super.finalize();
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
