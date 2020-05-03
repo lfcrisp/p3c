@@ -521,6 +521,224 @@ protected void finalize() {
 ]]>
         </example>
     </rule>
+    <rule name="ToStringReturningNullCheck"
+          language="java"
+          message="java.zyzx.ToStringReturningNullCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ToStringReturningNullCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return null; // Noncompliant
+  } else {
+    // ...
+
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public String toString () {
+  if (this.collection.isEmpty()) {
+    return "";
+  } else {
+    // ...
+
+
+]]>
+        </example>
+    </rule>
+    <rule name="WaitInSynchronizeCheck"
+          language="java"
+          message="java.zyzx.WaitInSynchronizeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.WaitInSynchronizeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+private void removeElement() {
+  while (!suitableCondition()){
+    obj.wait();
+  }
+  ... // Perform removal
+}
+or
+
+private void removeElement() {
+  while (!suitableCondition()){
+    wait();
+  }
+  ... // Perform removal
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+private synchronized void removeElement() {
+  while (!suitableCondition()){
+    wait();
+  }
+  ... // Perform removal
+}
+
+
+]]>
+        </example>
+    </rule>
+    <rule name="ThreadSleepCheck"
+          language="java"
+          message="java.zyzx.ThreadSleepCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ThreadSleepCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void doSomething(){
+  synchronized(monitor) {
+    while(notReady()){
+      Thread.sleep(200);
+    }
+    process();
+  }
+  ...
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+public void doSomething(){
+  synchronized(monitor) {
+    while(notReady()){
+      monitor.wait(200);
+    }
+    process();
+  }
+  ...
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="ForLoopIncrementSignCheck"
+          language="java"
+          message="java.zyzx.ForLoopIncrementSignCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ForLoopIncrementSignCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i--) { // Noncompliant;
+    String string = strings[i];  // ArrayIndexOutOfBoundsException when i reaches -1
+    //...
+  }
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+public void doSomething(String [] strings) {
+  for (int i = 0; i < strings.length; i++) {
+    String string = strings[i];
+    //...
+  }
+
+]]>
+        </example>
+    </rule>
+    <rule name="ImmediateReverseBoxingCheck"
+          language="java"
+          message="java.zyzx.ImmediateReverseBoxingCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ImmediateReverseBoxingCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void examineInt(int a) {
+  //...
+}
+
+public void examineInteger(Integer a) {
+  // ...
+}
+
+public void func() {
+  int i = 0;
+  Integer iger1 = Integer.valueOf(0);
+  double d = 1.0;
+
+  int dIntValue = new Double(d).intValue(); // Noncompliant
+
+  examineInt(new Integer(i).intValue()); // Noncompliant; explicit box/unbox
+  examineInt(Integer.valueOf(i));  // Noncompliant; boxed int will be auto-unboxed
+
+  examineInteger(i); // Compliant; value is boxed but not then unboxed
+  examineInteger(iger1.intValue()); // Noncompliant; unboxed int will be autoboxed
+
+  Integer iger2 = new Integer(iger1); // Noncompliant; unnecessary unboxing, value can be reused
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+public void examineInt(int a) {
+  //...
+}
+
+public void examineInteger(Integer a) {
+  // ...
+}
+
+public void func() {
+  int i = 0;
+  Integer iger1 = Integer.valueOf(0);
+  double d = 1.0;
+
+  int dIntValue = (int) d;
+
+  examineInt(i);
+
+  examineInteger(i);
+  examineInteger(iger1);
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

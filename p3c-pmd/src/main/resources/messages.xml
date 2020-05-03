@@ -608,4 +608,19 @@
     <entry key="java.zyzx.ThreadRunCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：Thread.run（）方法的目的是在单独的专用线程中执行代码。 直接调用此方法没有意义，因为它导致其代码在当前线程中执行。为了获得预期的行为，请改为调用Thread.start（）方法。]]>
     </entry>
+    <entry key="java.zyzx.ToStringReturningNullCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：在对象上调用toString（）或clone（）应该始终返回字符串或对象。 相反，返回null会违反该方法的隐式协定。]]>
+    </entry>
+    <entry key="java.zyzx.WaitInSynchronizeCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：先要获得对象锁才能进行"wait", "notify" , "notifyAll"操作]]>
+    </entry>
+    <entry key="java.zyzx.ThreadSleepCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：如果在当前线程持有锁时调用Thread.sleep（...），则可能导致性能和可伸缩性问题，甚至导致死锁，因为持有锁的线程的执行被冻结。 最好在监视对象上调用wait（...）以暂时释放锁并允许其他线程运行。]]>
+    </entry>
+    <entry key="java.zyzx.ForLoopIncrementSignCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：检查for循环下标递增或递减正确,错误的写法将使循环运行比预期的次数多很多，从而可能导致意外的行为。]]>
+    </entry>
+    <entry key="java.zyzx.ImmediateReverseBoxingCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：自动拆箱和装箱不需手动转换。]]>
+    </entry>
 </properties>

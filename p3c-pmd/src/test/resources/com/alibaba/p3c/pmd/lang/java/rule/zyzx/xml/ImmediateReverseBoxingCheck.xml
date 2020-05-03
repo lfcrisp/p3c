@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+  <code-fragment id="测试样例">
+    <![CDATA[
+
+package org.p3c.demo;
+public class MyIterator {
+
+public void examineInt(int a) {
+  //...
+}
+
+public void examineInteger(Integer a) {
+  // ...
+}
+
+public void func() {
+  int i = 0;
+  Integer iger1 = Integer.valueOf(0);
+  double d = 1.0;
+
+  int dIntValue = new Double(d).intValue(); // Noncompliant
+
+  examineInt(new Integer(i).intValue()); // Noncompliant; explicit box/unbox
+  examineInt(Integer.valueOf(i));  // Noncompliant; boxed int will be auto-unboxed
+
+  examineInteger(i); // Compliant; value is boxed but not then unboxed
+  examineInteger(iger1.intValue()); // Noncompliant; unboxed int will be autoboxed
+
+  Integer iger2 = new Integer(iger1); // Noncompliant; unnecessary unboxing, value can be reused
+}
+}
+
+        ]]>
+  </code-fragment>
+  <!--没有对 方法参数签名为空进行判断-->
+  <test-code>
+    <!-- 预期问题个数 -->
+    <description>ImmediateReverseBoxingCheck</description>
+    <expected-problems>0</expected-problems>
+    <code-ref id="测试样例" />
+  </test-code>
+</test-data>
