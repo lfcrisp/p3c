@@ -739,6 +739,212 @@ public void func() {
 ]]>
         </example>
     </rule>
+    <rule name="ThreadOverridesRunCheck"
+          language="java"
+          message="java.zyzx.ThreadOverridesRunCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ThreadOverridesRunCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+class Thread1 extends Thread {
+
+//...
+
+}
+
+class Thread2 implements Runnable {
+
+//...
+
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+class Thread1 extends Thread {
+@Override
+public void run() {
+//...
+}
+}
+
+class Thread2 implements Runnable {
+@Override
+public void run() {
+//...
+}
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="ClassComparedByNameCheck"
+          language="java"
+          message="java.zyzx.ClassComparedByNameCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ClassComparedByNameCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+package computer;
+class Pear extends Laptop { ... }
+
+package food;
+class Pear extends Fruit { ... }
+
+class Store {
+
+  public boolean hasSellByDate(Object item) {
+    if ("Pear".equals(item.getClass().getSimpleName())) {  // Noncompliant
+      return true;  // Results in throwing away week-old computers
+    }
+    return false;
+  }
+
+  public boolean isList(Class<T> valueClass) {
+    if (List.class.getName().equals(valueClass.getName())) {  // Noncompliant
+      return true;
+    }
+    return false;
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+
+class Store {
+
+  public boolean hasSellByDate(Object item) {
+    if (item instanceof food.Pear) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean isList(Class<T> valueClass) {
+    if (valueClass.isAssignableFrom(List.class)) {
+      return true;
+    }
+    return false;
+  }
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="CollectionCallingItselfCheck"
+          language="java"
+          message="java.zyzx.CollectionCallingItselfCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CollectionCallingItselfCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+List <Object> objs = new ArrayList<Object>();
+objs.add("Hello");
+
+objs.add(objs); // Noncompliant; StackOverflowException if objs.hashCode() called
+objs.addAll(objs); // Noncompliant; behavior undefined
+objs.containsAll(objs); // Noncompliant; always true
+objs.removeAll(objs); // Noncompliant; confusing. Use clear() instead
+objs.retainAll(objs); // Noncompliant; NOOP
+
+]]>
+        </example>
+    </rule>
+    <rule name="InstanceOfAlwaysTrueCheck"
+          language="java"
+          message="java.zyzx.InstanceOfAlwaysTrueCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.InstanceOfAlwaysTrueCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+a = false;
+if (a) { // Noncompliant
+  doSomething(); // never executed
+}
+
+if (false) { // Noncompliant;
+  doSomething();
+} else {
+  doSomethingElse(); // never executed
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="CustomSerializationMethodCheck"
+          language="java"
+          message="java.zyzx.CustomSerializationMethodCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CustomSerializationMethodCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class Watermelon implements Serializable {
+  // ...
+  void writeObject(java.io.ObjectOutputStream out)// Noncompliant; not private
+        throws IOException
+  {...}
+
+  private void readObject(java.io.ObjectInputStream in)
+  {...}
+
+  public void readObjectNoData()  // Noncompliant; not private
+  {...}
+
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class Watermelon implements Serializable {
+  // ...
+  private void writeObject(java.io.ObjectOutputStream out)
+        throws IOException
+  {...}
+
+  private void readObject(java.io.ObjectInputStream in)
+        throws IOException, ClassNotFoundException
+  {...}
+
+  private void readObjectNoData()
+        throws ObjectStreamException
+  {...}
+
+
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

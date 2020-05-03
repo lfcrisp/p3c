@@ -165,4 +165,34 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"ImmediateReverseBoxingCheck");
         runTests(rule,"ImmediateReverseBoxingCheck");
     }
+
+    @Test
+    public void testThreadOverridesRunCheck(){
+        Rule rule = this.findRule(RULESET,"ThreadOverridesRunCheck");
+        runTests(rule,"ThreadOverridesRunCheck");
+    }
+
+    @Test
+    public void testClassComparedByNameCheck(){
+        Rule rule = this.findRule(RULESET,"ClassComparedByNameCheck");
+        runTests(rule,"ClassComparedByNameCheck");
+    }
+
+    @Test
+    public void testCollectionCallingItselfCheck(){
+        Rule rule = this.findRule(RULESET,"CollectionCallingItselfCheck");
+        runTests(rule,"CollectionCallingItselfCheck");
+    }
+
+    @Test
+    public void testInstanceOfAlwaysTrueCheck(){
+        Rule rule = this.findRule(RULESET,"InstanceOfAlwaysTrueCheck");
+        runTests(rule,"InstanceOfAlwaysTrueCheck");
+    }
+
+    @Test
+    public void testCustomSerializationMethodCheck(){
+        Rule rule = this.findRule(RULESET,"CustomSerializationMethodCheck");
+        runTests(rule,"CustomSerializationMethodCheck");
+    }
 }

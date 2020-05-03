@@ -623,4 +623,19 @@
     <entry key="java.zyzx.ImmediateReverseBoxingCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：自动拆箱和装箱不需手动转换。]]>
     </entry>
+    <entry key="java.zyzx.ThreadOverridesRunCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：线程类应该重写run方法。]]>
+    </entry>
+    <entry key="java.zyzx.ClassComparedByNameCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不要用类名称比较类是否相同，而用instanceof或者Class.isAssignableFrom()方法检查对象的基础类型。]]>
+    </entry>
+    <entry key="java.zyzx.CollectionCallingItselfCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：集合不应该作为参数传递给它们自己的方法。]]>
+    </entry>
+    <entry key="java.zyzx.InstanceOfAlwaysTrueCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：该条件执行块从未被执行。]]>
+    </entry>
+    <entry key="java.zyzx.CustomSerializationMethodCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：自定义类序列化方法签名应该合法.]]>
+    </entry>
 </properties>
