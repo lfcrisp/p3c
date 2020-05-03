@@ -1047,6 +1047,179 @@ public class S2175 {
 ]]>
         </example>
     </rule>
+    <rule name="ShiftOnIntOrLongCheck"
+          language="java"
+          message="java.zyzx.ShiftOnIntOrLongCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ShiftOnIntOrLongCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public int shift(int a) {
+  int x = a >> 32; // Noncompliant
+  return a << 48;  // Noncompliant
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public int shift(int a) {
+  int x = a >> 31;
+  return a << 16;
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="InvalidDateValuesCheck"
+          language="java"
+          message="java.zyzx.InvalidDateValuesCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.InvalidDateValuesCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+Date d = new Date();
+d.setDate(25);
+d.setYear(2014);
+d.setMonth(12);  // Noncompliant; rolls d into the next year
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+Date d = new Date();
+d.setDate(25);
+d.setYear(2014);
+d.setMonth(11);
+
+]]>
+        </example>
+    </rule>
+    <rule name="ReturnInFinallyCheck"
+          language="java"
+          message="java.zyzx.ReturnInFinallyCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ReturnInFinallyCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public static void main(String[] args) {
+  try {
+    doSomethingWhichThrowsException();
+    System.out.println("OK");   // incorrect "OK" message is printed
+  } catch (RuntimeException e) {
+    System.out.println("ERROR");  // this message is not shown
+  }
+}
+
+public static void doSomethingWhichThrowsException() {
+  try {
+    throw new RuntimeException();
+  } finally {
+    for (int i = 0; i < 10; i ++) {
+      //...
+      if (q == i) {
+        break; // ignored
+      }
+    }
+
+    /* ... */
+    return;      // Noncompliant - prevents the RuntimeException from being propagated
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public static void main(String[] args) {
+  try {
+    doSomethingWhichThrowsException();
+    System.out.println("OK");
+  } catch (RuntimeException e) {
+    System.out.println("ERROR");  // "ERROR" is printed as expected
+  }
+}
+
+public static void doSomethingWhichThrowsException() {
+  try {
+    throw new RuntimeException();
+  } finally {
+    for (int i = 0; i < 10; i ++) {
+      //...
+      if (q == i) {
+        break; // ignored
+      }
+    }
+
+    /* ... */
+  }
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="LocksNotUnlockedCheck"
+          language="java"
+          message="java.zyzx.LocksNotUnlockedCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.LocksNotUnlockedCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class MyClass {
+  private Lock lock = new Lock();
+
+  public void doSomething() {
+    lock.lock(); // Noncompliant
+    if (isInitialized()) {
+      // ...
+      lock.unlock();
+    }
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class MyClass {
+  private Lock lock = new Lock();
+
+  public void doSomething() {
+    if (isInitialized()) {
+      lock.lock();
+      // ...
+      lock.unlock();
+    }
+  }
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

@@ -647,4 +647,16 @@
     <entry key="java.zyzx.CollectionInappropriateCallsCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：正确使用集合元素类型.]]>
     </entry>
+    <entry key="java.zyzx.ShiftOnIntOrLongCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：整型与长整型位移操作数应该介于1与类型占位数-1.]]>
+    </entry>
+    <entry key="java.zyzx.InvalidDateValuesCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：正确使用日期.月份的取值范围为0-11]]>
+    </entry>
+    <entry key="java.zyzx.ReturnInFinallyCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：finally块中使用return, break, throw等跳转语句，会阻止在try catch中抛出的未处理异常的传播.]]>
+    </entry>
+    <entry key="java.zyzx.LocksNotUnlockedCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：保证锁能够释放.]]>
+    </entry>
 </properties>

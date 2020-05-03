@@ -213,4 +213,28 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"CollectionInappropriateCallsCheck");
         runTests(rule,"CollectionInappropriateCallsCheck");
     }
+
+    @Test
+    public void testShiftOnIntOrLongCheck(){
+        Rule rule = this.findRule(RULESET,"ShiftOnIntOrLongCheck");
+        runTests(rule,"ShiftOnIntOrLongCheck");
+    }
+
+    @Test
+    public void testInvalidDateValuesCheck(){
+        Rule rule = this.findRule(RULESET,"InvalidDateValuesCheck");
+        runTests(rule,"InvalidDateValuesCheck");
+    }
+
+    @Test
+    public void testReturnInFinallyCheck(){
+        Rule rule = this.findRule(RULESET,"ReturnInFinallyCheck");
+        runTests(rule,"ReturnInFinallyCheck");
+    }
+
+    @Test
+    public void testLocksNotUnlockedCheck(){
+        Rule rule = this.findRule(RULESET,"LocksNotUnlockedCheck");
+        runTests(rule,"LocksNotUnlockedCheck");
+    }
 }
