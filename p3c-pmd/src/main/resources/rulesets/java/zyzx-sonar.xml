@@ -945,6 +945,108 @@ public class Watermelon implements Serializable {
 ]]>
         </example>
     </rule>
+    <rule name="PrimitiveWrappersInTernaryOperatorCheck"
+          language="java"
+          message="java.zyzx.PrimitiveWrappersInTernaryOperatorCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PrimitiveWrappersInTernaryOperatorCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+Integer i = 123456789;
+Float f = 1.0f;
+Number n = condition ? i : f;  // Noncompliant; i is coerced to float. n = 1.23456792E8
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+Integer i = 123456789;
+Float f = 1.0f;
+Number n = condition ? (Number) i : f;  // n = 123456789
+
+
+
+]]>
+        </example>
+    </rule>
+    <rule name="IdenticalOperandOnBinaryExpressionCheck"
+          language="java"
+          message="java.zyzx.IdenticalOperandOnBinaryExpressionCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.IdenticalOperandOnBinaryExpressionCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+if ( a == a ) { // always true
+  doZ();
+}
+if ( a != a ) { // always false
+  doY();
+}
+if ( a == b && a == b ) { // if the first one is true, the second one is too
+  doX();
+}
+if ( a == b || a == b ) { // if the first one is true, the second one is too
+  doW();
+}
+
+int j = 5 / 5; //always 1
+int k = 5 - 5; //always 0
+
+c.equals(c); //always true
+
+float f;
+if(f != f) { //test for NaN value
+  System.out.println("f is NaN");
+}
+
+int i = 1 << 1; // Compliant
+int j = a << a; // Noncompliant
+
+]]>
+        </example>
+    </rule>
+    <rule name="CollectionInappropriateCallsCheck"
+          language="java"
+          message="java.zyzx.CollectionInappropriateCallsCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CollectionInappropriateCallsCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class S2175 {
+
+  public static void main(String[] args) {
+    String foo = "42";
+    Map<Integer, Object> map = new HashMap<>();
+    map.remove(foo); // Noncompliant; will return 'null' for sure because 'map' is handling only Integer keys
+
+    // ...
+
+    List<String> list = new ArrayList<String>();
+    Integer integer = Integer.valueOf(1);
+    if (list.contains(integer)) { // Noncompliant; always false.
+      list.remove(integer); // Noncompliant; list.add(integer) doesn't compile, so this will always return 'false'
+    }
+  }
+
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

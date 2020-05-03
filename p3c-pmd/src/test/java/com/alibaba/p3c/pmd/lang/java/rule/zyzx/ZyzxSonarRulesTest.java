@@ -195,4 +195,22 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"CustomSerializationMethodCheck");
         runTests(rule,"CustomSerializationMethodCheck");
     }
+
+    @Test
+    public void testPrimitiveWrappersInTernaryOperatorCheck(){
+        Rule rule = this.findRule(RULESET,"PrimitiveWrappersInTernaryOperatorCheck");
+        runTests(rule,"PrimitiveWrappersInTernaryOperatorCheck");
+    }
+
+    @Test
+    public void testIdenticalOperandOnBinaryExpressionCheck(){
+        Rule rule = this.findRule(RULESET,"IdenticalOperandOnBinaryExpressionCheck");
+        runTests(rule,"IdenticalOperandOnBinaryExpressionCheck");
+    }
+
+    @Test
+    public void testCollectionInappropriateCallsCheck(){
+        Rule rule = this.findRule(RULESET,"CollectionInappropriateCallsCheck");
+        runTests(rule,"CollectionInappropriateCallsCheck");
+    }
 }

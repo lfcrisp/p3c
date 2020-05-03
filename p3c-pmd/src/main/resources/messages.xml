@@ -638,4 +638,13 @@
     <entry key="java.zyzx.CustomSerializationMethodCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：自定义类序列化方法签名应该合法.]]>
     </entry>
+    <entry key="java.zyzx.PrimitiveWrappersInTernaryOperatorCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不同的原始包装类如果没有明确的类转换不能用于三元操作中.]]>
+    </entry>
+    <entry key="java.zyzx.IdenticalOperandOnBinaryExpressionCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：相同的表达式不要作为二进制操作的操作数使用,应该简化.]]>
+    </entry>
+    <entry key="java.zyzx.CollectionInappropriateCallsCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：正确使用集合元素类型.]]>
+    </entry>
 </properties>
