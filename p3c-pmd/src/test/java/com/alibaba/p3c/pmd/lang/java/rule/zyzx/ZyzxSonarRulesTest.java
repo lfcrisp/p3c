@@ -261,4 +261,28 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"ThreadWaitCallCheck");
         runTests(rule,"ThreadWaitCallCheck");
     }
+
+    @Test
+    public void testMethodNamedHashcodeOrEqualCheck(){
+        Rule rule = this.findRule(RULESET,"MethodNamedHashcodeOrEqualCheck");
+        runTests(rule,"MethodNamedHashcodeOrEqualCheck");
+    }
+
+    @Test
+    public void testAbsOnNegativeCheck(){
+        Rule rule = this.findRule(RULESET,"AbsOnNegativeCheck");
+        runTests(rule,"AbsOnNegativeCheck");
+    }
+
+    @Test
+    public void testTransactionalMethodVisibilityCheck(){
+        Rule rule = this.findRule(RULESET,"TransactionalMethodVisibilityCheck");
+        runTests(rule,"TransactionalMethodVisibilityCheck");
+    }
+
+    @Test
+    public void testNonSerializableWriteCheck(){
+        Rule rule = this.findRule(RULESET,"NonSerializableWriteCheck");
+        runTests(rule,"NonSerializableWriteCheck");
+    }
 }

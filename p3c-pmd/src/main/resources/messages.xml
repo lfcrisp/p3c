@@ -671,4 +671,16 @@
     <entry key="java.zyzx.ThreadWaitCallCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：不要在线程中使用"wait(…)", "notify()" and "notifyAll()".]]>
     </entry>
+    <entry key="java.zyzx.MethodNamedHashcodeOrEqualCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：方法不应命名为“ tostring”，“ hashcode”或“ equal”,如果需这样命名则必须加@Override.]]>
+    </entry>
+    <entry key="java.zyzx.AbsOnNegativeCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不要对数值类型的MIN_VALUE值或返回值为此值进行Math.abs与取反操作，因为不会起作用.]]>
+    </entry>
+    <entry key="java.zyzx.TransactionalMethodVisibilityCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：非public方法不要注解Transactional,调用时spring 会抛出异常.]]>
+    </entry>
+    <entry key="java.zyzx.NonSerializableWriteCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：执行写操作的类要序列化，否则会抛出异常.]]>
+    </entry>
 </properties>

@@ -1325,6 +1325,140 @@ myThread.wait(2000);
 ]]>
         </example>
     </rule>
+    <rule name="MethodNamedHashcodeOrEqualCheck"
+          language="java"
+          message="java.zyzx.MethodNamedHashcodeOrEqualCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.MethodNamedHashcodeOrEqualCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public int hashcode() { /* ... */ }  // Noncompliant
+
+public String tostring() { /* ... */ } // Noncompliant
+
+public boolean equal(Object obj) { /* ... */ }  // Noncompliant
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+@Override
+public int hashCode() { /* ... */ }
+
+@Override
+public String toString() { /* ... */ }
+
+@Override
+public boolean equals(Object obj) { /* ... */ }
+
+]]>
+        </example>
+    </rule>
+    <rule name="AbsOnNegativeCheck"
+          language="java"
+          message="java.zyzx.AbsOnNegativeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.AbsOnNegativeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void doSomething(String str) {
+  if (Math.abs(str.hashCode()) > 0) { // Noncompliant
+    // ...
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public void doSomething(String str) {
+  if (str.hashCode() != 0) {
+    // ...
+  }
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="TransactionalMethodVisibilityCheck"
+          language="java"
+          message="java.zyzx.TransactionalMethodVisibilityCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.TransactionalMethodVisibilityCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+@Transactional  // Noncompliant
+private void doTheThing(ArgClass arg) {
+  // ...
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="NonSerializableWriteCheck"
+          language="java"
+          message="java.zyzx.NonSerializableWriteCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.NonSerializableWriteCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class Vegetable {  // neither implements Serializable nor extends a class that does
+  //...
+}
+
+public class Menu {
+  public void meal() throws IOException {
+    Vegetable veg;
+    //...
+    FileOutputStream fout = new FileOutputStream(veg.getName());
+    ObjectOutputStream oos = new ObjectOutputStream(fout);
+    oos.writeObject(veg);  // Noncompliant. Nothing will be written
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class Vegetable implements Serializable {  // can now be serialized
+  //...
+}
+
+public class Menu {
+  public void meal() throws IOException {
+    Vegetable veg;
+    //...
+    FileOutputStream fout = new FileOutputStream(veg.getName());
+    ObjectOutputStream oos = new ObjectOutputStream(fout);
+    oos.writeObject(veg);
+  }
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
