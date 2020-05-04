@@ -659,4 +659,16 @@
     <entry key="java.zyzx.LocksNotUnlockedCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：保证锁能够释放.]]>
     </entry>
+    <entry key="java.zyzx.ForLoopFalseConditionCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：循环应该至少走一次.]]>
+    </entry>
+    <entry key="java.zyzx.CastArithmeticOperandCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：数字操作在操作或赋值前要转化.]]>
+    </entry>
+    <entry key="java.zyzx.ParameterReassignedToCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：方法参数，捕获的异常和foreach变量的初始值不应忽略.]]>
+    </entry>
+    <entry key="java.zyzx.ThreadWaitCallCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不要在线程中使用"wait(…)", "notify()" and "notifyAll()".]]>
+    </entry>
 </properties>

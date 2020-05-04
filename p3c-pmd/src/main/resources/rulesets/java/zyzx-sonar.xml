@@ -1220,6 +1220,111 @@ public class MyClass {
 ]]>
         </example>
     </rule>
+    <rule name="ForLoopFalseConditionCheck"
+          language="java"
+          message="java.zyzx.ForLoopFalseConditionCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ForLoopFalseConditionCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+循环应该至少走一次.
+for (int i = 10; i < 10; i++) {  // Noncompliant
+  // ...
+
+]]>
+        </example>
+    </rule>
+    <rule name="CastArithmeticOperandCheck"
+          language="java"
+          message="java.zyzx.CastArithmeticOperandCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.CastArithmeticOperandCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+float twoThirds = 2/3; // Noncompliant; int division. Yields 0.0
+long millisInYear = 1_000*3_600*24*365; // Noncompliant; int multiplication. Yields 1471228928
+long bigNum = Integer.MAX_VALUE + 2; // Noncompliant. Yields -2147483647
+long bigNegNum =  Integer.MIN_VALUE-1; //Noncompliant, gives a positive result instead of a negative one.
+Date myDate = new Date(seconds * 1_000); //Noncompliant, won't produce the expected result if seconds > 2_147_483
+...
+public long compute(int factor){
+  return factor * 10_000;  //Noncompliant, won't produce the expected result if factor > 214_748
+}
+
+public float compute2(long factor){
+  return factor / 123;  //Noncompliant, will be rounded to closest long integer
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+float twoThirds = 2f/3; // 2 promoted to float. Yields 0.6666667
+long millisInYear = 1_000L*3_600*24*365; // 1000 promoted to long. Yields 31_536_000_000
+long bigNum = Integer.MAX_VALUE + 2L; // 2 promoted to long. Yields 2_147_483_649
+long bigNegNum =  Integer.MIN_VALUE-1L; // Yields -2_147_483_649
+Date myDate = new Date(seconds * 1_000L);
+...
+public long compute(int factor){
+  return factor * 10_000L;
+}
+
+public float compute2(long factor){
+  return factor / 123f;
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="ParameterReassignedToCheck"
+          language="java"
+          message="java.zyzx.ParameterReassignedToCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ParameterReassignedToCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void doTheThing(String str, int i, List<String> strings) {
+  str = Integer.toString(i); // Noncompliant
+
+  for (String s : strings) {
+    s = "hello world"; // Noncompliant
+  }
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="ThreadWaitCallCheck"
+          language="java"
+          message="java.zyzx.ThreadWaitCallCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ThreadWaitCallCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+Thread myThread = new Thread(new RunnableJob());
+...
+myThread.wait(2000);
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

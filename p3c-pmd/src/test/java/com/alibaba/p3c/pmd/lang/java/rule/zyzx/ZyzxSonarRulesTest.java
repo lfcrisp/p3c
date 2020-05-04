@@ -237,4 +237,28 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"LocksNotUnlockedCheck");
         runTests(rule,"LocksNotUnlockedCheck");
     }
+
+    @Test
+    public void testForLoopFalseConditionCheck(){
+        Rule rule = this.findRule(RULESET,"ForLoopFalseConditionCheck");
+        runTests(rule,"ForLoopFalseConditionCheck");
+    }
+
+    @Test
+    public void testCastArithmeticOperandCheck(){
+        Rule rule = this.findRule(RULESET,"CastArithmeticOperandCheck");
+        runTests(rule,"CastArithmeticOperandCheck");
+    }
+
+    @Test
+    public void testParameterReassignedToCheck(){
+        Rule rule = this.findRule(RULESET,"ParameterReassignedToCheck");
+        runTests(rule,"ParameterReassignedToCheck");
+    }
+
+    @Test
+    public void testThreadWaitCallCheck(){
+        Rule rule = this.findRule(RULESET,"ThreadWaitCallCheck");
+        runTests(rule,"ThreadWaitCallCheck");
+    }
 }
