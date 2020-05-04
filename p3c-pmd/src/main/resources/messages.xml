@@ -695,4 +695,13 @@
     <entry key="java.zyzx.UselessIncrementCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：值增减后不存储是代码浪费甚至是bug.]]>
     </entry>
+    <entry key="java.zyzx.ReflectionOnNonRuntimeAnnotationCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不应将反射用于检查非运行时注释.]]>
+    </entry>
+    <entry key="java.zyzx.DuplicateConditionIfElseIfCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：if/else if中不应该有相同的条件.]]>
+    </entry>
+    <entry key="java.zyzx.UnclosedResourcesCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：打开的资源应该关闭并且放到finally块中进行关闭.]]>
+    </entry>
 </properties>

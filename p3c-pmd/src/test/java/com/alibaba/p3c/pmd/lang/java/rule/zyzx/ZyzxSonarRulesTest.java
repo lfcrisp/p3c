@@ -309,4 +309,22 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"UselessIncrementCheck");
         runTests(rule,"UselessIncrementCheck");
     }
+
+    @Test
+    public void testReflectionOnNonRuntimeAnnotationCheck(){
+        Rule rule = this.findRule(RULESET,"ReflectionOnNonRuntimeAnnotationCheck");
+        runTests(rule,"ReflectionOnNonRuntimeAnnotationCheck");
+    }
+
+    @Test
+    public void testDuplicateConditionIfElseIfCheck(){
+        Rule rule = this.findRule(RULESET,"DuplicateConditionIfElseIfCheck");
+        runTests(rule,"DuplicateConditionIfElseIfCheck");
+    }
+
+    @Test
+    public void testUnclosedResourcesCheck(){
+        Rule rule = this.findRule(RULESET,"UnclosedResourcesCheck");
+        runTests(rule,"UnclosedResourcesCheck");
+    }
 }

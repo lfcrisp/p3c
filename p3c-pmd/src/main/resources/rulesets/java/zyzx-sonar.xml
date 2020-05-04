@@ -1602,6 +1602,136 @@ public int pickNumber() {
 ]]>
         </example>
     </rule>
+    <rule name="ReflectionOnNonRuntimeAnnotationCheck"
+          language="java"
+          message="java.zyzx.ReflectionOnNonRuntimeAnnotationCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ReflectionOnNonRuntimeAnnotationCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+Method m = String.class.getMethod("getBytes", new Class[] {int.class,
+int.class, byte[].class, int.class});
+if (m.isAnnotationPresent(Override.class)) {  // Noncompliant; test will always return false, even when @Override is present in the code
+
+]]>
+        </example>
+    </rule>
+    <rule name="DuplicateConditionIfElseIfCheck"
+          language="java"
+          message="java.zyzx.DuplicateConditionIfElseIfCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.DuplicateConditionIfElseIfCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+if (param == 1)
+  openWindow();
+else if (param == 2)
+  closeWindow();
+else if (param == 1)  // Noncompliant
+  moveWindowToTheBackground();
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+if (param == 1)
+  openWindow();
+else if (param == 2)
+  closeWindow();
+else if (param == 3)
+  moveWindowToTheBackground();
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="UnclosedResourcesCheck"
+          language="java"
+          message="java.zyzx.UnclosedResourcesCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.UnclosedResourcesCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+private void readTheFile() throws IOException {
+  Path path = Paths.get(this.fileName);
+  BufferedReader reader = Files.newBufferedReader(path, this.charset);
+  // ...
+  reader.close();  // Noncompliant
+  // ...
+  Files.lines("input.txt").forEach(System.out::println); // Noncompliant: The stream needs to be closed
+}
+
+private void doSomething() {
+  OutputStream stream = null;
+  try {
+    for (String property : propertyList) {
+      stream = new FileOutputStream("myfile.txt");  // Noncompliant
+      // ...
+    }
+  } catch (Exception e) {
+    // ...
+  } finally {
+    stream.close();  // Multiple streams were opened. Only the last is closed.
+  }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+private void readTheFile(String fileName) throws IOException {
+    Path path = Paths.get(fileName);
+    try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+      reader.readLine();
+      // ...
+    }
+    // ..
+    try (Stream<String> input = Files.lines("input.txt"))  {
+      input.forEach(System.out::println);
+    }
+}
+
+private void doSomething() {
+  OutputStream stream = null;
+  try {
+    stream = new FileOutputStream("myfile.txt");
+    for (String property : propertyList) {
+      // ...
+    }
+  } catch (Exception e) {
+    // ...
+  } finally {
+    stream.close();
+  }
+}
+Java 7引入了try-with-resources语句，该语句隐式关闭Closeables。 在try-with-resources语句中打开的所有资源都被该规则忽略。
+try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+  //...
+}
+catch ( ... ) {
+  //...
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

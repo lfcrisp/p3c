@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+  <code-fragment id="测试样例">
+    <![CDATA[
+
+package org.p3c.demo;
+public class Menu {
+
+public int Watermelon() {
+  Method m = String.class.getMethod("getBytes", new Class[] {int.class,
+int.class, byte[].class, int.class});
+if (m.isAnnotationPresent(Override.class)) { }
+}
+
+}
+
+
+
+        ]]>
+  </code-fragment>
+  <!--没有对 方法参数签名为空进行判断-->
+  <test-code>
+    <!-- 预期问题个数 -->
+    <description>ReflectionOnNonRuntimeAnnotationCheck</description>
+    <expected-problems>1</expected-problems>
+    <code-ref id="测试样例" />
+  </test-code>
+</test-data>
