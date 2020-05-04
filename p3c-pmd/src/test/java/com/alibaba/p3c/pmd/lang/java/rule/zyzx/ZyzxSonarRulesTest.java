@@ -285,4 +285,28 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"NonSerializableWriteCheck");
         runTests(rule,"NonSerializableWriteCheck");
     }
+
+    @Test
+    public void testSerializableObjectInSessionCheck(){
+        Rule rule = this.findRule(RULESET,"SerializableObjectInSessionCheck");
+        runTests(rule,"SerializableObjectInSessionCheck");
+    }
+
+    @Test
+    public void testStaticMultithreadedUnsafeFieldsCheck(){
+        Rule rule = this.findRule(RULESET,"StaticMultithreadedUnsafeFieldsCheck");
+        runTests(rule,"StaticMultithreadedUnsafeFieldsCheck");
+    }
+
+    @Test
+    public void testPrintfFailCheck(){
+        Rule rule = this.findRule(RULESET,"PrintfFailCheck");
+        runTests(rule,"PrintfFailCheck");
+    }
+
+    @Test
+    public void testUselessIncrementCheck(){
+        Rule rule = this.findRule(RULESET,"UselessIncrementCheck");
+        runTests(rule,"UselessIncrementCheck");
+    }
 }

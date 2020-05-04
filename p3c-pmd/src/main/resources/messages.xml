@@ -683,4 +683,16 @@
     <entry key="java.zyzx.NonSerializableWriteCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：执行写操作的类要序列化，否则会抛出异常.]]>
     </entry>
+    <entry key="java.zyzx.SerializableObjectInSessionCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：HttpSession要保存序列化的对象.]]>
+    </entry>
+    <entry key="java.zyzx.StaticMultithreadedUnsafeFieldsCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：非线程安全的字段不应该静态化。注：可改为静态方法返回对象.]]>
+    </entry>
+    <entry key="java.zyzx.PrintfFailCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：因为Printf风格格式化是在运行期解读，而不是在编译期检验,会存在风险格式类型必须一至.]]>
+    </entry>
+    <entry key="java.zyzx.UselessIncrementCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：值增减后不存储是代码浪费甚至是bug.]]>
+    </entry>
 </properties>

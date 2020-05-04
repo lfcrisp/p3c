@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+  <code-fragment id="测试样例">
+    <![CDATA[
+
+package org.p3c.demo;
+public class Menu {
+  public void Watermelon() throws IOException {
+String.format("The value of my integer is %d", "Hello World");  // Noncompliant; an 'int' is expected rather than a String
+String.format("Duke's Birthday year is %tX", c);  //Noncompliant; X is not a supported time conversion character
+String.format("Display %0$d and then %d", 1);   //Noncompliant; arguments are numbered starting from 1
+String.format("Not enough arguments %d and %d", 1);  //Noncompliant; the second argument is missing
+String.format("%< is equals to %d", 2);   //Noncompliant; the argument index '<' refers to the previous format specifier but there isn't one
+
+MessageFormat.format("Result {1}.", value); // Noncompliant; Not enough arguments. (first element is {0})
+MessageFormat.format("Result {{0}.", value); // Noncompliant; Unbalanced number of curly brace (single curly braces should be escaped)
+MessageFormat.format("Result ' {0}", value); // Noncompliant; Unbalanced number of quotes (single quote must be escaped)
+
+java.util.logging.Logger logger;
+logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14); // Noncompliant {{Not enough arguments.}}
+
+org.slf4j.Logger slf4jLog;
+org.slf4j.Marker marker;
+
+slf4jLog.debug(marker, "message {}"); // Noncompliant {{Not enough arguments.}}
+  }
+}
+
+
+        ]]>
+  </code-fragment>
+  <!--没有对 方法参数签名为空进行判断-->
+  <test-code>
+    <!-- 预期问题个数 -->
+    <description>PrintfFailCheck</description>
+    <expected-problems>1</expected-problems>
+    <code-ref id="测试样例" />
+  </test-code>
+</test-data>

@@ -1459,6 +1459,149 @@ public class Menu {
 ]]>
         </example>
     </rule>
+    <rule name="SerializableObjectInSessionCheck"
+          language="java"
+          message="java.zyzx.SerializableObjectInSessionCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.SerializableObjectInSessionCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class Address {
+  //...
+}
+
+//...
+HttpSession session = request.getSession();
+session.setAttribute("address", new Address());  // Noncompliant; Address isn't serializable
+
+]]>
+        </example>
+    </rule>
+    <rule name="StaticMultithreadedUnsafeFieldsCheck"
+          language="java"
+          message="java.zyzx.StaticMultithreadedUnsafeFieldsCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.StaticMultithreadedUnsafeFieldsCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class MyClass {
+  private static SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");  // Noncompliant
+  private static Calendar calendar = Calendar.getInstance();  // Noncompliant
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class MyClass {
+  private SimpleDateFormat format = new SimpleDateFormat("HH-mm-ss");
+  private Calendar calendar = Calendar.getInstance();
+
+]]>
+        </example>
+    </rule>
+    <rule name="PrintfFailCheck"
+          language="java"
+          message="java.zyzx.PrintfFailCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PrintfFailCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+String.format("The value of my integer is %d", "Hello World");  // Noncompliant; an 'int' is expected rather than a String
+String.format("Duke's Birthday year is %tX", c);  //Noncompliant; X is not a supported time conversion character
+String.format("Display %0$d and then %d", 1);   //Noncompliant; arguments are numbered starting from 1
+String.format("Not enough arguments %d and %d", 1);  //Noncompliant; the second argument is missing
+String.format("%< is equals to %d", 2);   //Noncompliant; the argument index '<' refers to the previous format specifier but there isn't one
+
+MessageFormat.format("Result {1}.", value); // Noncompliant; Not enough arguments. (first element is {0})
+MessageFormat.format("Result {{0}.", value); // Noncompliant; Unbalanced number of curly brace (single curly braces should be escaped)
+MessageFormat.format("Result ' {0}", value); // Noncompliant; Unbalanced number of quotes (single quote must be escaped)
+
+java.util.logging.Logger logger;
+logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14); // Noncompliant {{Not enough arguments.}}
+
+org.slf4j.Logger slf4jLog;
+org.slf4j.Marker marker;
+
+slf4jLog.debug(marker, "message {}"); // Noncompliant {{Not enough arguments.}}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+String.format("The value of my integer is %d", 3);
+String.format("Duke's Birthday year is %tY", c);
+String.format("Display %1$d and then %d", 1);
+String.format("Not enough arguments %d and %d", 1, 2);
+String.format("%d is equals to %<", 2);
+
+MessageFormat.format("Result {0}.", value);
+MessageFormat.format("Result {0} & {1}.", value, value);
+MessageFormat.format("Result {0}.", myObject);
+
+java.util.logging.Logger logger;
+logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14, 2); // Noncompliant {{Not enough arguments.}}
+
+org.slf4j.Logger slf4jLog;
+org.slf4j.Marker marker;
+
+slf4jLog.debug(marker, "message {}", 1);
+
+]]>
+        </example>
+    </rule>
+    <rule name="UselessIncrementCheck"
+          language="java"
+          message="java.zyzx.UselessIncrementCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.UselessIncrementCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public int pickNumber() {
+  int i = 0;
+  int j = 0;
+
+  i = i++; // Noncompliant; i is still zero
+
+  return j++; // Noncompliant; 0 returned
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public int pickNumber() {
+  int i = 0;
+  int j = 0;
+
+  i++;
+  return ++j;
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
