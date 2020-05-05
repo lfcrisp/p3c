@@ -363,4 +363,16 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"EqualsArgumentTypeCheck");
         runTests(rule,"EqualsArgumentTypeCheck");
     }
+
+    @Test
+    public void testServletInstanceFieldCheck(){
+        Rule rule = this.findRule(RULESET,"ServletInstanceFieldCheck");
+        runTests(rule,"ServletInstanceFieldCheck");
+    }
+
+    @Test
+    public void testSillyEqualsCheck(){
+        Rule rule = this.findRule(RULESET,"SillyEqualsCheck");
+        runTests(rule,"SillyEqualsCheck");
+    }
 }

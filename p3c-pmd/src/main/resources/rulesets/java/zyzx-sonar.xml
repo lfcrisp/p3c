@@ -1965,6 +1965,80 @@ public boolean equals(Object obj) {
 ]]>
         </example>
     </rule>
+    <rule name="ServletInstanceFieldCheck"
+          language="java"
+          message="java.zyzx.ServletInstanceFieldCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ServletInstanceFieldCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class MyServlet extends HttpServlet {
+  private String userName;  //As this field is shared by all users, it's obvious that this piece of information should be managed differently
+  ...
+}
+or
+
+public class MyAction extends Action {
+  private String userName;  //Same reason
+  ...
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="SillyEqualsCheck"
+          language="java"
+          message="java.zyzx.SillyEqualsCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.SillyEqualsCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+interface KitchenTool { ... };
+interface Plant {...}
+
+public class Spatula implements KitchenTool { ... }
+public class Tree implements Plant { ...}
+//...
+
+Spatula spatula = new Spatula();
+KitchenTool tool = spatula;
+KitchenTool [] tools = {tool};
+
+Tree tree = new Tree();
+Plant plant = tree;
+Tree [] trees = {tree};
+
+
+if (spatula.equals(tree)) { // Noncompliant; unrelated classes
+  // ...
+}
+else if (spatula.equals(plant)) { // Noncompliant; unrelated class and interface
+  // ...
+}
+else if (tool.equals(plant)) { // Noncompliant; unrelated interfaces
+  // ...
+}
+else if (tool.equals(tools)) { // Noncompliant; array & non-array
+  // ...
+}
+else if (trees.equals(tools)) {  // Noncompliant; incompatible arrays
+  // ...
+}
+else if (tree.equals(null)) {  // Noncompliant
+  // ...
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

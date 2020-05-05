@@ -722,4 +722,10 @@
     <entry key="java.zyzx.EqualsArgumentTypeCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：equals（Object obj）应该测试参数类型.]]>
     </entry>
+    <entry key="java.zyzx.ServletInstanceFieldCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Servlet不应具有可变的实例字段.]]>
+    </entry>
+    <entry key="java.zyzx.SillyEqualsCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不应该做的equals检查.]]>
+    </entry>
 </properties>
