@@ -1883,6 +1883,52 @@ public void doSomething(String fileName) {
 ]]>
         </example>
     </rule>
+    <rule name="ObjectFinalizeCheck"
+          language="java"
+          message="java.zyzx.ObjectFinalizeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ObjectFinalizeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void dispose() throws Throwable {
+  this.finalize();                       // Noncompliant
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="ObjectFinalizeOverloadedCheck"
+          language="java"
+          message="java.zyzx.ObjectFinalizeOverloadedCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ObjectFinalizeOverloadedCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public int finalize(int someParameter) {        // Noncompliant
+  /* ... */
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public int someBetterName(int someParameter) {  // Compliant
+  /* ... */
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

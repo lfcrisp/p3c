@@ -713,4 +713,10 @@
     <entry key="java.zyzx.IgnoredStreamReturnValueCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：从流中读取的值应先检查再操作.]]>
     </entry>
+    <entry key="java.zyzx.ObjectFinalizeCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Object.finalize()不要人为去调用.]]>
+    </entry>
+    <entry key="java.zyzx.ObjectFinalizeOverloadedCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Object.finalize()不要重写.]]>
+    </entry>
 </properties>

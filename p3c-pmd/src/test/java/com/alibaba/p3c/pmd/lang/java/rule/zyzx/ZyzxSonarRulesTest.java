@@ -345,4 +345,16 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"IgnoredStreamReturnValueCheck");
         runTests(rule,"IgnoredStreamReturnValueCheck");
     }
+
+    @Test
+    public void testObjectFinalizeCheck(){
+        Rule rule = this.findRule(RULESET,"ObjectFinalizeCheck");
+        runTests(rule,"ObjectFinalizeCheck");
+    }
+
+    @Test
+    public void testObjectFinalizeOverloadedCheck(){
+        Rule rule = this.findRule(RULESET,"ObjectFinalizeOverloadedCheck");
+        runTests(rule,"ObjectFinalizeOverloadedCheck");
+    }
 }
