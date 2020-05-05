@@ -327,4 +327,22 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"UnclosedResourcesCheck");
         runTests(rule,"UnclosedResourcesCheck");
     }
+
+    @Test
+    public void testSynchronizationOnStringOrBoxedCheck(){
+        Rule rule = this.findRule(RULESET,"SynchronizationOnStringOrBoxedCheck");
+        runTests(rule,"SynchronizationOnStringOrBoxedCheck");
+    }
+
+    @Test
+    public void testSerializableSuperConstructorCheck(){
+        Rule rule = this.findRule(RULESET,"SerializableSuperConstructorCheck");
+        runTests(rule,"SerializableSuperConstructorCheck");
+    }
+
+    @Test
+    public void testIgnoredStreamReturnValueCheck(){
+        Rule rule = this.findRule(RULESET,"IgnoredStreamReturnValueCheck");
+        runTests(rule,"IgnoredStreamReturnValueCheck");
+    }
 }

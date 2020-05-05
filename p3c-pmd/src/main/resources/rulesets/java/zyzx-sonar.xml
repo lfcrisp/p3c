@@ -1732,6 +1732,157 @@ catch ( ... ) {
 ]]>
         </example>
     </rule>
+    <rule name="SynchronizationOnStringOrBoxedCheck"
+          language="java"
+          message="java.zyzx.SynchronizationOnStringOrBoxedCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.SynchronizationOnStringOrBoxedCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+private static final Boolean bLock = Boolean.FALSE;
+private static final Integer iLock = Integer.valueOf(0);
+private static final String sLock = "LOCK";
+
+public void doSomething() {
+
+  synchronized(bLock) {  // Noncompliant
+    // ...
+  }
+  synchronized(iLock) {  // Noncompliant
+    // ...
+  }
+  synchronized(sLock) {  // Noncompliant
+    // ...
+  }
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+private static final Object lock1 = new Object();
+private static final Object lock2 = new Object();
+private static final Object lock3 = new Object();
+
+public void doSomething() {
+
+  synchronized(lock1) {
+    // ...
+  }
+  synchronized(lock2) {
+    // ...
+  }
+  synchronized(lock3) {
+    // ...
+  }
+
+]]>
+        </example>
+    </rule>
+    <rule name="SerializableSuperConstructorCheck"
+          language="java"
+          message="java.zyzx.SerializableSuperConstructorCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.SerializableSuperConstructorCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public class Fruit {
+  private Season ripe;
+
+  public Fruit (Season ripe) {...}
+  public void setRipe(Season ripe) {...}
+  public Season getRipe() {...}
+}
+
+public class Raspberry extends Fruit
+        implements Serializable {  // Noncompliant; nonserializable ancestor doesn't have no-arg constructor
+  private static final long serialVersionUID = 1;
+
+  private String variety;
+
+  public Raspberry(Season ripe, String variety) { ...}
+  public void setVariety(String variety) {...}
+  public String getVarity() {...}
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class Fruit {
+  private Season ripe;
+
+  public Fruit () {...};  // Compliant; no-arg constructor added to ancestor
+  public Fruit (Season ripe) {...}
+  public void setRipe(Season ripe) {...}
+  public Season getRipe() {...}
+}
+
+public class Raspberry extends Fruit
+        implements Serializable {
+  private static final long serialVersionUID = 1;
+
+  private String variety;
+
+  public Raspberry(Season ripe, String variety) {...}
+  public void setVariety(String variety) {...}
+  public String getVarity() {...}
+}
+
+]]>
+        </example>
+    </rule>
+    <rule name="IgnoredStreamReturnValueCheck"
+          language="java"
+          message="java.zyzx.IgnoredStreamReturnValueCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.IgnoredStreamReturnValueCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public void doSomething(String fileName) {
+  try {
+    InputStream is = new InputStream(file);
+    byte [] buffer = new byte[1000];
+    is.read(buffer);  // Noncompliant
+    // ...
+  } catch (IOException e) { ... }
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public void doSomething(String fileName) {
+  try {
+    InputStream is = new InputStream(file);
+    byte [] buffer = new byte[1000];
+    int count = 0;
+    while (count = is.read(buffer) > 0) {
+      // ...
+    }
+  } catch (IOException e) { ... }
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+  <code-fragment id="测试样例">
+    <![CDATA[
+
+package org.p3c.demo;
+public class Menu {
+
+public class Watermelon extends Fruit
+        implements Serializable {  // Noncompliant; nonserializable ancestor doesn't have no-arg constructor
+  private static final long serialVersionUID = 1;
+
+  private String variety;
+
+  public Raspberry(Season ripe, String variety) {}
+  public void setVariety(String variety) {}
+  public String getVarity() {}
+}
+}
+
+
+
+        ]]>
+  </code-fragment>
+  <!--没有对 方法参数签名为空进行判断-->
+  <test-code>
+    <!-- 预期问题个数 -->
+    <description>SerializableSuperConstructorCheck</description>
+    <expected-problems>2</expected-problems>
+    <code-ref id="测试样例" />
+  </test-code>
+</test-data>

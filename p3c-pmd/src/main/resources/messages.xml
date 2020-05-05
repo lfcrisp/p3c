@@ -704,4 +704,13 @@
     <entry key="java.zyzx.UnclosedResourcesCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：打开的资源应该关闭并且放到finally块中进行关闭.]]>
     </entry>
+    <entry key="java.zyzx.SynchronizationOnStringOrBoxedCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：字符串和封装类不应该被用作锁定对象，因为它们被合并和重用.]]>
+    </entry>
+    <entry key="java.zyzx.SerializableSuperConstructorCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：序列化的类的非序列化父类应有一个无参构造器.]]>
+    </entry>
+    <entry key="java.zyzx.IgnoredStreamReturnValueCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：从流中读取的值应先检查再操作.]]>
+    </entry>
 </properties>
