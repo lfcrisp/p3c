@@ -1929,6 +1929,42 @@ public int someBetterName(int someParameter) {  // Compliant
 ]]>
         </example>
     </rule>
+    <rule name="EqualsArgumentTypeCheck"
+          language="java"
+          message="java.zyzx.EqualsArgumentTypeCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.EqualsArgumentTypeCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>1</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+public boolean equals(Object obj) {
+  MyClass mc = (MyClass)obj;  // Noncompliant
+  // ...
+}
+
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public boolean equals(Object obj) {
+  if (obj == null)
+    return false;
+
+  if (this.getClass() != obj.getClass())
+    return false;
+
+  MyClass mc = (MyClass)obj;
+  // ...
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

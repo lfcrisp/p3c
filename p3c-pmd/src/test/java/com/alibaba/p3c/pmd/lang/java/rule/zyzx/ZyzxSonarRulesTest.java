@@ -357,4 +357,10 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"ObjectFinalizeOverloadedCheck");
         runTests(rule,"ObjectFinalizeOverloadedCheck");
     }
+
+    @Test
+    public void testEqualsArgumentTypeCheck(){
+        Rule rule = this.findRule(RULESET,"EqualsArgumentTypeCheck");
+        runTests(rule,"EqualsArgumentTypeCheck");
+    }
 }
