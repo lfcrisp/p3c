@@ -37,7 +37,7 @@ c.equals(c);
   <test-code>
     <!-- 预期问题个数 -->
     <description>IdenticalOperandOnBinaryExpressionCheck</description>
-    <expected-problems>0</expected-problems>
+    <expected-problems>1</expected-problems>
     <code-ref id="测试样例" />
   </test-code>
 </test-data>

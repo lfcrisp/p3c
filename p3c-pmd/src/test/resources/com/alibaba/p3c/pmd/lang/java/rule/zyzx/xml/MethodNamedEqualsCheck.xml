@@ -43,7 +43,7 @@ public boolean hahaha(MyClass o) {
   <test-code>
     <!-- 预期问题个数 -->
     <description>MethodNamedEqualsCheck</description>
-    <expected-problems>0</expected-problems>
+    <expected-problems>2</expected-problems>
     <code-ref id="测试样例" />
   </test-code>
 </test-data>
