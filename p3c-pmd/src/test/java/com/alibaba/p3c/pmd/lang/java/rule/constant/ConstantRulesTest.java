@@ -31,6 +31,6 @@ public class ConstantRulesTest extends SimpleAggregatorTst {
     @Override
     public void setUp() {
         addRule(RULESET, "UpperEllRule");
-        addRule(RULESET, "MethodParameterCountRule");
+        addRule(RULESET, "UndefineMagicConstantRule");
     }
 }
