@@ -1,80 +1,50 @@
 <idea-plugin>
     <id>com.alibaba.p3c.smartfox</id>
-    <name>Alibaba Java Coding Guidelines</name>
-    <description>Alibaba Java Coding Guidelines plugin support.</description>
+    <name>Zyzx Java Coding Guidelines</name>
+    <description>中移在线代码规约插件.</description>
 
     <change-notes>
         <![CDATA[
          <ul>
-        2.0.2
-        <li>Fix idea 2020.1 Ultimate compatibility issue</li>
-        </ul>
-        <ul>
-        2.0.1
-        <li>Fix idea 2019.3 compatibility issue</li>
-        <li>fix https://github.com/alibaba/p3c/issues/540</li>
-        <li>fix https://github.com/alibaba/p3c/issues/209</li>
-        <li>fix https://github.com/alibaba/p3c/issues/579</li>
-        <li>Add code style rule of lock</li>
-        </ul>
-        <ul>
-        2.0.0
-        <li>supported min idea version 2016.1(145.258.11)</li>
-        <li>supported min jdk version 1.8</li>
-        <li>fix persistent compatibility issue</li>
-        <li>fix https://github.com/alibaba/p3c/issues/430</li>
-        <li>fix https://github.com/alibaba/p3c/issues/454</li>
-        <li>fix https://github.com/alibaba/p3c/issues/409</li>
-        <li>add rule To judge the equivalence of floating-point numbers.</li>
-        <li>add annotation process for rule ClassMustHaveAuthorRule</li>
-        </ul>
-        <ul>1.0.6
-            <li>fix <a href="https://github.com/alibaba/p3c/issues/337">https://github.com/alibaba/p3c/issues/337</a>  do not check annotation </li>
-            <li>PojoMustOverrideToStringRule do not check interface </li>
-            <li>Performance improvement</li>
-        </ul>
-          <ul>
-        1.0.5
-        <li>
-        Add rule [Recommended] The total number of lines for a method should not be more than 80.
-        </li>
-        <li>
-        Add rule [Recommended] Avoid using the negation operator '!'.
-        </li>
-        <li>
-        Add rule [Mandatory] When doing date formatting, "y" should be written in lowercase for "year" in a pattern statement
-        </li>
-         <li>https://github.com/alibaba/p3c/issues/264</li>
-         </ul>
-          <ul>
-        1.0.4
-         <li>fix https://github.com/alibaba/p3c/issues/217</li>
-        <li>fix https://github.com/alibaba/p3c/issues/208</li>
-        <li>fix https://github.com/alibaba/p3c/issues/195</li>
-        </ul>
-         <ul>
-        1.0.3
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/191">https://github.com/alibaba/p3c/issues/191</a></li>
-        </ul>
-         <ul>
-        1.0.2
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/185">https://github.com/alibaba/p3c/issues/185</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/189">https://github.com/alibaba/p3c/issues/189</a></li>
-        </ul>
-         <ul>
-        1.0.1
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/149">https://github.com/alibaba/p3c/issues/149</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/60">https://github.com/alibaba/p3c/issues/60</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/58">https://github.com/alibaba/p3c/issues/58</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/68">https://github.com/alibaba/p3c/issues/68</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/112">https://github.com/alibaba/p3c/issues/112</a></li>
-        <li>fix <a href="https://github.com/alibaba/p3c/issues/127">https://github.com/alibaba/p3c/issues/127</a></li>
+        10.0.0
+        <li>本插件由Alibaba基于PMD实现了《阿里巴巴Java开发手册》中涉及的48条规则</li>
+        <li>现根据中移在线Sonar规则，加入了目前公司在用的64条Bug级别的规则</li>
+        <li>《阿里巴巴Java开发手册》实现规则说明</li>
+        <li>编程规约 （六）并发处理，实现了1、2、3、4、5、10、11、12等8条规则</li>
+        <li>编程规约（五）集合处理，实现了4、5、6、7、9、11等6条规则</li>
+        <li>编程规约（一）命名风格，实现了1、2、3、4、5、6、7、8、9、13等10条规则</li>
+        <li>编程规约（二）常量定义，实现了1、2等2条规则</li>
+        <li>编程规约（四）OOP规约，实现了5、6、7、8、9、12、17等7条规则</li>
+        <li>编程规约（七）控制语句，实现了1、2、4等3条规则</li>
+        <li>编程规约（八）注释规约，实现了1、2、3、4、5等5条规则</li>
+        <li>编程规约（九）其他，实现了1、3、4、5等4条规则</li>
+        <li>异常日志 （一）异常处理，实现了5、7、10等3条规则</li>
+        <li>中移在线规则</li>
+        <li>compareTo可能返回不是具体的值（除0外），建议用 >0、<0、=0)</li>
+        <li>Double.longBitsToDouble返回给定的位所代表的double值,需要一个64位的long类型参数</li>
+        <li>equals作为方法名应该仅用于重写Object.equals(Object)来避免混乱</li>
+        <li>Iterator.next（）使迭代器前进一项。 因此，在Iterator.hasNext（）中调用它会破坏Iterator，并导致生产中出现意外行为</li>
+        <li>PreparedStatement与ResultSet参数设置与获取数据由序号1开始而非0</li>
+        <li>先要获得对象锁才能进行"wait", "notify" , "notifyAll"操作</li>
+        <li>线程类应该重写run方法</li>
+        <li>整型与长整型位移操作数应该介于1与类型占位数-1</li>
+        <li>finally块中使用return, break, throw等跳转语句，会阻止在try catch中抛出的未处理异常的传播</li>
+        <li>不要在foreach循环里进行元素的remove/add操作，remove元素请使用Iterator方式</li>
+        <li>保证锁能够释放</li>
+        <li>循环应该至少走一次</li>
+        <li>不要在线程中使用"wait(…)", "notify()" and "notifyAll()"</li>
+        <li>方法不应命名为“ tostring”，“ hashcode”或“ equal”,如果需这样命名则必须加@Override</li>
+        <li>非public方法不要注解Transactional,调用时spring 会抛出异常</li>
+        <li>非线程安全的字段不应该静态化。注：可改为静态方法返回对象</li>
+        <li>打开的资源应该关闭并且放到finally块中进行关闭</li>
+        <li>Servlet不应具有可变的实例字段</li>
+        <li>序列化的类的非序列化父类应有一个无参构造器</li>
+        <li>等…………</li>
         </ul>
         ]]>
     </change-notes>
-    <vendor>alibaba</vendor>
-    <version>2.0.0</version>
+    <vendor>zyzx</vendor>
+    <version>10.0.0</version>
     <idea-version since-build="145.0"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>
