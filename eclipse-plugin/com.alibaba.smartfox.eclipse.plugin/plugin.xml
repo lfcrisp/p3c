@@ -57,18 +57,18 @@
     <extension
             point="org.eclipse.ui.commands">
         <category
-                description="Alibaba Code Analysis"
+                description="ZYZX Code Analysis"
                 id="alibaba.ui.commands"
-                name="Alibaba Command">
+                name="ZYZX Command">
         </category>
         <command
                 categoryId="alibaba.ui.commands"
-                description="Alibaba Code Analysis"
+                description="ZYZX Code Analysis"
                 id="com.alibaba.smartfox.eclipse.command.analysis"
-                name="Alibaba Code Analysis"/>
+                name="ZYZX Code Analysis"/>
         <command
                 categoryId="alibaba.ui.commands"
-                description="Alibaba Code Analysis"
+                description="ZYZX Code Analysis"
                 id="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler"
                 name="Switch Language"/>
     </extension>
@@ -103,7 +103,7 @@
             <command
                     commandId="com.alibaba.smartfox.eclipse.command.analysis"
                     icon="icons/ali-ide-run.png"
-                    label="Alibaba Code Guidelines"
+                    label="ZYZX Code Guidelines"
                     style="push">
                 <visibleWhen
                         checkEnabled="false">
@@ -119,9 +119,9 @@
                 <command
                         commandId="com.alibaba.smartfox.eclipse.command.analysis"
                         icon="icons/ali-ide-run.png"
-                        label="Alibaba Code Guidelines"
+                        label="ZYZX Code Guidelines"
                         style="push"
-                        tooltip="Alibaba Code Guidelines">
+                        tooltip="ZYZX Code Guidelines">
                 </command>
                 <command
                         commandId="com.alibaba.smartfox.eclipse.handler.SwitchLanguageHandler"
@@ -146,7 +146,7 @@
                 class="com.alibaba.smartfox.eclipse.QuickFixGenerator"/>
     </extension>
     <extension point="org.eclipse.ui.preferencePages">
-        <page name="Alibaba Code Analysis"
+        <page name="ZYZX Code Analysis"
               class="com.alibaba.smartfox.eclipse.ui.AllRulesPreferencePage"
               id="com.alibaba.smartfox.eclipse.ui.AllRulesPreferencePage"/>
     </extension>

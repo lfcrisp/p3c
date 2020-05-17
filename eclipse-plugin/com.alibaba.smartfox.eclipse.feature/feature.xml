@@ -2,13 +2,13 @@
 <feature
         id="com.alibaba.smartfox.eclipse.feature"
         label="%feature.label"
-        version="2.0.1.qualifier"
+        version="10.0.0.qualifier"
         provider-name="%feature.provider_name"
         plugin="com.alibaba.smartfox.eclipse.plugin"
         image="smartfox.png">
 
     <description url="%description.url">
-        Alibaba Java Coding Guidelines
+        ZYZX Java Coding Guidelines
     </description>
 
     <copyright>
@@ -20,7 +20,7 @@
     </license>
 
     <url>
-        <update label="%feature.update_site_name" url="https://p3c.alibaba.com/plugin/eclipse/update"/>
+        <update label="%feature.update_site_name" url="https://xxxx.xxxx.xxx/xxxxx/xxxxx/xxxxxx"/>
     </url>
 
     <requires>
