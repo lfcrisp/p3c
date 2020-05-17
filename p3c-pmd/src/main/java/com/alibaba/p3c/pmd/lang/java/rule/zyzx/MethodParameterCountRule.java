@@ -30,7 +30,7 @@ public class MethodParameterCountRule extends AbstractAliRule {
 
     private static final String METHOD_XPATH = "//MethodDeclarator";
 
-    private static final Integer PARAMETER_COUNT_LIMIT = 5;
+    private static final Integer PARAMETER_COUNT_LIMIT = 8;
 
     @Override
     public Object visit(ASTCompilationUnit node, Object data) {

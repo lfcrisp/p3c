@@ -563,6 +563,6 @@ Positive example:
         <![CDATA[Method【%s】Parameter list is too long。 ]]>
     </entry>
     <entry key="java.zyzx.MethodParameterCountRule.rule.msg">
-        <![CDATA[Note: The method parameter list is not allowed to exceed (inclusive) 5, it is recommended to encapsulate into an objec。]]>
+        <![CDATA[Note: The method parameter list is not allowed to exceed (inclusive) 8, it is recommended to encapsulate into an objec。]]>
     </entry>
 </properties>
