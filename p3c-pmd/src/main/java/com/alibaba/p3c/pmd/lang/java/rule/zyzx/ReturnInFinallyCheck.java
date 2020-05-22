@@ -16,17 +16,21 @@ import java.util.List;
 
 public class ReturnInFinallyCheck extends AbstractAliRule {
 
-    private static final String CHECKMETHODNUM = "//FinallyStatement[//Statement/ReturnStatement]";
+    private static final String RETURNNUM = "//FinallyStatement//Statement/ReturnStatement";
+    private static final String CHECKNUM = "//FinallyStatement//Statement/BreakStatement";
+    private static final String THROWNUM = "//FinallyStatement//Statement/ThrowStatement";
 
     public Object visit(ASTTryStatement node, Object data) {
         try {
-            List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);
-            if ( !markerAnnotations.isEmpty() ){
+            List<Node> returnNum = node.findChildNodesWithXPath(RETURNNUM);
+            List<Node> checkNum = node.findChildNodesWithXPath(CHECKNUM);
+            List<Node> throwNum = node.findChildNodesWithXPath(THROWNUM);
+            if ( !returnNum.isEmpty() || !checkNum.isEmpty() || !throwNum.isEmpty()){
                     addViolationWithMessage(data, node,
                             "java.zyzx.ReturnInFinallyCheck.rule.msg", null);
             }
         } catch (JaxenException e) {
-            throw new RuntimeException("XPath expression " + CHECKMETHODNUM + " failed: " + e.getLocalizedMessage(), e);
+            throw new RuntimeException("XPath expression " + RETURNNUM + " failed: " + e.getLocalizedMessage(), e);
         }
         return super.visit(node, data);
     }
