@@ -3,17 +3,55 @@
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="alibaba-pmd"
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-    <rule ref="rulesets/java/ali-concurrent.xml"/>
-    <rule ref="rulesets/java/ali-comment.xml"/>
-    <rule ref="rulesets/java/ali-naming.xml"/>
-    <rule ref="rulesets/java/ali-constant.xml"/>
-    <rule ref="rulesets/java/ali-other.xml"/>
-    <rule ref="rulesets/java/ali-flowcontrol.xml"/>
-    <rule ref="rulesets/java/ali-oop.xml"/>
-    <rule ref="rulesets/java/ali-orm.xml"/>
-    <rule ref="rulesets/java/ali-exception.xml"/>
-    <rule ref="rulesets/java/ali-set.xml"/>
-    <rule ref="rulesets/java/ali-ruleOnEclipse.xml"/>
+    <!--<rule ref="rulesets/java/ali-concurrent.xml"/>-->
+    <rule ref="rulesets/java/ali-concurrent.xml">
+        <exclude name="AvoidConcurrentCompetitionRandomRule"/>
+        <exclude name="CountDownShouldInFinallyRule"/>
+        <exclude name="AvoidManuallyCreateThreadRule"/>
+        <exclude name="ThreadShouldSetNameRule"/>
+        <exclude name="AvoidCallStaticSimpleDateFormatRule"/>
+        <exclude name="ThreadLocalShouldRemoveRule"/>
+    </rule>
+<!--    <rule ref="rulesets/java/ali-comment.xml"/>
+    <rule ref="rulesets/java/ali-naming.xml"/>-->
+    <!--<rule ref="rulesets/java/ali-constant.xml"/>-->
+    <rule ref="rulesets/java/ali-constant.xml">
+        <exclude name="UndefineMagicConstantRule"/>
+        <exclude name="UpperEllRule"/>
+    </rule>
+    <!--<rule ref="rulesets/java/ali-other.xml"/>-->
+    <rule ref="rulesets/java/ali-other.xml">
+        <exclude name="AvoidMissUseOfMathRandomRule"/>
+        <exclude name="MethodTooLongRule"/>
+        <exclude name="UseRightCaseForDateFormatRule"/>
+        <exclude name="AvoidDoubleOrFloatEqualCompareRule"/>
+    </rule>
+    <!--<rule ref="rulesets/java/ali-flowcontrol.xml"/>-->
+    <rule ref="rulesets/java/ali-flowcontrol.xml">
+        <exclude name="AvoidComplexConditionRule"/>
+        <exclude name="AvoidNegationOperatorRule"/>
+        <exclude name="SwitchStatementRule"/>
+    </rule>
+    <!--<rule ref="rulesets/java/ali-oop.xml"/>-->
+    <rule ref="rulesets/java/ali-oop.xml">
+        <exclude name="PojoMustUsePrimitiveFieldRule"/>
+        <exclude name="PojoNoDefaultValueRule"/>
+        <exclude name="PojoMustOverrideToStringRule"/>
+        <exclude name="StringConcatRule"/>
+        <exclude name="BigDecimalAvoidDoubleConstructorRule"/>
+        <exclude name="EqualsAvoidNullRule"/>
+    </rule>
+    <!--<rule ref="rulesets/java/ali-orm.xml"/>-->
+    <!--<rule ref="rulesets/java/ali-exception.xml"/>-->
+    <!--<rule ref="rulesets/java/ali-set.xml"/>-->
+    <rule ref="rulesets/java/ali-set.xml">
+        <exclude name="CollectionInitShouldAssignCapacityRule"/>
+        <exclude name="ClassCastExceptionWithToArrayRule"/>
+        <exclude name="UnsupportedExceptionWithModifyAsListRule"/>
+        <exclude name="ClassCastExceptionWithSubListToArrayListRule"/>
+        <exclude name="ConcurrentExceptionWithModifyOriginSubListRule"/>
+    </rule>
+    <!--<rule ref="rulesets/java/ali-ruleOnEclipse.xml"/>-->
     <rule ref="rulesets/java/zyzx-sonar.xml">
         <exclude name="UnusedReturnedDataCheck"/>
     </rule>
