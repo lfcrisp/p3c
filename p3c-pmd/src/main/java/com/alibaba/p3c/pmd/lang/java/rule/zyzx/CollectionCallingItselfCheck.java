@@ -17,21 +17,21 @@ import java.util.List;
 
 public class CollectionCallingItselfCheck extends AbstractAliRule {
 
-    private static final String CHECKMETHOD = "Block[./BlockStatement/LocalVariableDeclaration//ClassOrInterfaceType[@Image='List']]";
     private static final String LISTNAME = "Block/BlockStatement/LocalVariableDeclaration[./Type//ClassOrInterfaceType[@Image='List']]/VariableDeclarator/VariableDeclaratorId";
 
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
-            List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHOD);
+            List<Node> markerAnnotations = node.findChildNodesWithXPath(LISTNAME);
             if ( !markerAnnotations.isEmpty() ){
-                String listName = node.findChildNodesWithXPath(LISTNAME).get(0).getImage();
-                String CHECKMETHODNUM = "//BlockStatement[./Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'"+listName+"')]][./Statement/StatementExpression/PrimaryExpression/PrimarySuffix//Name[contains(@Image,'"+listName+"')]]";
-                List<Node> checkMethodNum = node.findChildNodesWithXPath(CHECKMETHODNUM);
-                if (!checkMethodNum.isEmpty()){
-                    addViolationWithMessage(data, node,
-                            "java.zyzx.CollectionCallingItselfCheck.rule.msg", null);
+                for (int i = 0; i < markerAnnotations.size(); i++) {
+                    String listName = markerAnnotations.get(i).getImage();
+                    String CHECKMETHODNUM = "//BlockStatement[./Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[starts-with(@Image,'"+listName+"')]][./Statement/StatementExpression/PrimaryExpression/PrimarySuffix//Name[@Image='"+listName+"']]";
+                    List<Node> checkMethodNum = node.findChildNodesWithXPath(CHECKMETHODNUM);
+                    if (!checkMethodNum.isEmpty()){
+                        addViolationWithMessage(data, node,
+                                "java.zyzx.CollectionCallingItselfCheck.rule.msg", null);
+                    }
                 }
-
             }
         } catch (JaxenException e) {
             throw new RuntimeException("XPath expression " + LISTNAME + " failed: " + e.getLocalizedMessage(), e);

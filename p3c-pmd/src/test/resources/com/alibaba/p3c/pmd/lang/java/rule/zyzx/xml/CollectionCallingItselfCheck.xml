@@ -12,12 +12,14 @@ public class MyIterator {
   public boolean hasSellByDate(Object item) {
 List <Object> objs = new ArrayList<Object>();
 objs.add("Hello");
-
+List <Object> objsss = new ArrayList<Object>();
 objs.add(objs); // Noncompliant; StackOverflowException if objs.hashCode() called
 objs.addAll(objs); // Noncompliant; behavior undefined
 objs.containsAll(objs); // Noncompliant; always true
 objs.removeAll(objs); // Noncompliant; confusing. Use clear() instead
 objs.retainAll(objs); // Noncompliant; NOOP
+objsss.removeAll(objsss); // Noncompliant; confusing. Use clear() instead
+objsss.retainAll(objsss); // Noncompliant; NOOP
   }
 
 
@@ -31,7 +33,7 @@ objs.retainAll(objs); // Noncompliant; NOOP
   <test-code>
     <!-- 预期问题个数 -->
     <description>CollectionCallingItselfCheck</description>
-    <expected-problems>1</expected-problems>
+    <expected-problems>2</expected-problems>
     <code-ref id="测试样例" />
   </test-code>
 </test-data>

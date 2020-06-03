@@ -515,9 +515,8 @@ myThread.run(); // Noncompliant
             <![CDATA[
 Positive example:
 protected void finalize() {
-  releaseSomeResources();
-  super.finalize();
-
+Thread myThread = new Thread(runnable);
+myThread.start();
 ]]>
         </example>
     </rule>

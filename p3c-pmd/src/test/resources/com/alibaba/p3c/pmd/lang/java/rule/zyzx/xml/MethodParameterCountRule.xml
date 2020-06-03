@@ -6,7 +6,7 @@
     <code-fragment id="MethodParameterCountRule">
         <![CDATA[
     public class Foo {
-    public void methodB(int a, int b, int c, int d, int e) {
+    public void methodB(int a, int b, int c, int d, int e,int f,int g,int h) {
 
     }
     }
