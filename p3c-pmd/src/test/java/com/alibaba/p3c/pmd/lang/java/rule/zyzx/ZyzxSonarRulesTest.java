@@ -375,4 +375,22 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"SillyEqualsCheck");
         runTests(rule,"SillyEqualsCheck");
     }
+
+    @Test
+    public void testFileCreateTempFileCheck(){
+        Rule rule = this.findRule(RULESET,"FileCreateTempFileCheck");
+        runTests(rule,"FileCreateTempFileCheck");
+    }
+
+    @Test
+    public void testGetRequestedSessionIdCheck(){
+        Rule rule = this.findRule(RULESET,"GetRequestedSessionIdCheck");
+        runTests(rule,"GetRequestedSessionIdCheck");
+    }
+
+    @Test
+    public void testPublicStaticFieldShouldBeFinalCheck(){
+        Rule rule = this.findRule(RULESET,"PublicStaticFieldShouldBeFinalCheck");
+        runTests(rule,"PublicStaticFieldShouldBeFinalCheck");
+    }
 }

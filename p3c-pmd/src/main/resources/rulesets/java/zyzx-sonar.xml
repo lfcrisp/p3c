@@ -2038,6 +2038,95 @@ else if (tree.equals(null)) {  // Noncompliant
 ]]>
         </example>
     </rule>
+    <rule name="FileCreateTempFileCheck"
+          language="java"
+          message="java.zyzx.FileCreateTempFileCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.FileCreateTempFileCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+Negative example:
+
+File tempDir;
+tempDir = File.createTempFile("", ".");
+tempDir.delete();
+tempDir.mkdir();  // Noncompliant
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+Path tempPath = Files.createTempDirectory("");
+File tempDir = tempPath.toFile();
+
+]]>
+        </example>
+    </rule>
+    <rule name="GetRequestedSessionIdCheck"
+          language="java"
+          message="java.zyzx.GetRequestedSessionIdCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.GetRequestedSessionIdCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+根据Oracle Java API，该HttpServletRequest.getRequestedSessionId()方法：
+
+返回客户端指定的会话ID。该名称可能与此请求的当前有效会话的ID不同。如果客户端未指定会话ID，则此方法返回null。
+
+它返回的会话ID是通过Cookie或URL参数传输的，因此根据定义，没有什么可以阻止最终用户在HTTP请求中手动更新此会话ID的值。
+
+这是更新的HTTP标头的示例：
+
+GET /pageSomeWhere HTTP/1.1
+Host: webSite.com
+User-Agent: Mozilla/5.0
+Cookie: JSESSIONID=Hacked_Session_Value'''">
+
+由于最终用户可以手动更改值，因此请求中的会话ID仅应由Servlet容器（例如EG Tomcat或Jetty）使用，以查看该值是否与现有会话的ID相匹配。如果没有，则应认为该用户未经身份验证。此外，该会话ID绝不应该记录下来，以防止活动会话被劫持。
+Negative example:
+
+if(isActiveSession(request.getRequestedSessionId()) ){
+  ...
+}
+]]>
+        </example>
+    </rule>
+    <rule name="PublicStaticFieldShouldBeFinalCheck"
+          language="java"
+          message="java.zyzx.PublicStaticFieldShouldBeFinalCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PublicStaticFieldShouldBeFinalCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+没有充分的理由就将字段声明为“public”和“static”而不将其声明为“final”。
+使用这种方法，任何对象都可以在共享状态下执行任何操作，例如将其设置为 null。
+Negative example:
+
+public class Greeter {
+  public static Foo foo = new Foo();
+  ...
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class Greeter {
+  public static final Foo FOO = new Foo();
+  ...
+}
+
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>

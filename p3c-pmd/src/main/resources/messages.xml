@@ -728,4 +728,13 @@
     <entry key="java.zyzx.SillyEqualsCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：不应该做的equals检查.]]>
     </entry>
+    <entry key="java.zyzx.FileCreateTempFileCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：File.createTempFile不应该被用来创建目录.]]>
+    </entry>
+    <entry key="java.zyzx.GetRequestedSessionIdCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：“HttpserVletrequest.GetRequestedSessiond()”不应使用.]]>
+    </entry>
+    <entry key="java.zyzx.PublicStaticFieldShouldBeFinalCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：public static 域应该 final.]]>
+    </entry>
 </properties>

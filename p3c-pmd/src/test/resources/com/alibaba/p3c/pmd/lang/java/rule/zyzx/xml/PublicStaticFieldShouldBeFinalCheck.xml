@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+  <code-fragment id="测试样例">
+    <![CDATA[
+
+package org.p3c.demo;
+public class MyIterator {
+
+public static Foo foo1 = new Foo();
+public static Foo foo8 = new Foo();
+public static final Foo FOO2 = new Foo();
+public static final Foo FOO3 = new Foo();
+public static final Foo FOO4 = new Foo();
+}
+
+
+
+
+
+        ]]>
+  </code-fragment>
+  <!--没有对 方法参数签名为空进行判断-->
+  <test-code>
+    <!-- 预期问题个数 -->
+    <description>PublicStaticFieldShouldBeFinalCheck</description>
+    <expected-problems>12</expected-problems>
+    <code-ref id="测试样例" />
+  </test-code>
+</test-data>
