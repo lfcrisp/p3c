@@ -737,4 +737,13 @@
     <entry key="java.zyzx.PublicStaticFieldShouldBeFinalCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：public static 域应该 final.]]>
     </entry>
+    <entry key="java.zyzx.ClassVariableVisibilityCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：类变量域应该是private,通过set，get进行操作.]]>
+    </entry>
+    <entry key="java.zyzx.HardCodedCredentialsCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：密码等凭证应存储在代码之外的受严格保护的加密配置文件或数据库中.]]>
+    </entry>
+    <entry key="java.zyzx.RSAUsesOAEPCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：加密RSA算法应始终包含OAEP（最优非对称加密填充）.]]>
+    </entry>
 </properties>

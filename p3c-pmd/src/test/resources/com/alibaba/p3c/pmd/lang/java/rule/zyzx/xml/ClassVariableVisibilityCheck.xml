@@ -8,12 +8,10 @@
 
 package org.p3c.demo;
 public class MyIterator {
-
-public static Foo foo1 = new Foo();
-public static Foo foo8 = new Foo();
-public static final Foo FOO2 = new Foo();
-public static final Foo FOO3 = new Foo();
-public static final Foo FOO4 = new Foo();
+public class Watermelon implements Serializable {
+public static final int SOME_CONSTANT = 0; // Compliant - constants are not checked
+public String firstName; // Noncompliant
+}
 }
 
 
@@ -25,8 +23,8 @@ public static final Foo FOO4 = new Foo();
   <!--没有对 方法参数签名为空进行判断-->
   <test-code>
     <!-- 预期问题个数 -->
-    <description>PublicStaticFieldShouldBeFinalCheck</description>
-    <expected-problems>1</expected-problems>
+    <description>ClassVariableVisibilityCheck</description>
+    <expected-problems>2</expected-problems>
     <code-ref id="测试样例" />
   </test-code>
 </test-data>

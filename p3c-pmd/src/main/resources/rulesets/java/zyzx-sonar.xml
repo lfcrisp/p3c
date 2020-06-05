@@ -2127,6 +2127,113 @@ public class Greeter {
 ]]>
         </example>
     </rule>
+    <rule name="ClassVariableVisibilityCheck"
+          language="java"
+          message="java.zyzx.ClassVariableVisibilityCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ClassVariableVisibilityCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+
+Negative example:
+
+public class MyClass {
+
+  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked
+
+  public String firstName;                       // Noncompliant
+
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public class MyClass {
+
+  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked
+
+  private String firstName;                      // Compliant
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+}
+]]>
+        </example>
+    </rule>
+    <rule name="HardCodedCredentialsCheck"
+          language="java"
+          message="java.zyzx.HardCodedCredentialsCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.HardCodedCredentialsCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+由于从已编译的应用程序中提取字符串很容易，因此永远不要对凭据进行硬编码。这样做，几乎可以保证它们最终会落入攻击者的手中。对于分布式应用程序尤其如此。
+
+凭证应存储在代码之外的受严格保护的加密配置文件或数据库中。
+
+建议使用其他凭据单词（例如“ oauthToken”，“ secret”，...）自定义此规则的配置。
+Negative example:
+
+Connection conn = null;
+try {
+  conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+        "user=steve&password=blue"); // Noncompliant
+  String uname = "steve";
+  String password = "blue";
+  conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+        "user=" + uname + "&password=" + password); // Noncompliant
+
+  java.net.PasswordAuthentication pa = new java.net.PasswordAuthentication("userName", "1234".toCharArray());  // Noncompliant
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+Connection conn = null;
+try {
+  String uname = getEncryptedUser();
+  String password = getEncryptedPass();
+  conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+        "user=" + uname + "&password=" + password);
+]]>
+        </example>
+    </rule>
+    <rule name="RSAUsesOAEPCheck"
+          language="java"
+          message="java.zyzx.RSAUsesOAEPCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.RSAUsesOAEPCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+如果不使用RSA加密中的OAEP，则攻击者只需花费很少的精力即可解密数据或从密文中推断出.
+Negative example:
+
+Cipher rsa = javax.crypto.Cipher.getInstance("RSA/NONE/NoPadding");
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+Cipher rsa = javax.crypto.Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
