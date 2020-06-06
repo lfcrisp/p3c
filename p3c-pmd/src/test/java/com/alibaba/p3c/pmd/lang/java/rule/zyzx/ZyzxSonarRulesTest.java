@@ -411,4 +411,28 @@ public class ZyzxSonarRulesTest extends SimpleAggregatorTst {
         Rule rule = this.findRule(RULESET,"RSAUsesOAEPCheck");
         runTests(rule,"RSAUsesOAEPCheck");
     }
+
+    @Test
+    public void testServletMethodsExceptionsThrownCheck(){
+        Rule rule = this.findRule(RULESET,"ServletMethodsExceptionsThrownCheck");
+        runTests(rule,"ServletMethodsExceptionsThrownCheck");
+    }
+
+    @Test
+    public void testPublicStaticMutableMembersCheck(){
+        Rule rule = this.findRule(RULESET,"PublicStaticMutableMembersCheck");
+        runTests(rule,"PublicStaticMutableMembersCheck");
+    }
+
+    @Test
+    public void testPrintStackTraceCalledWithoutArgumentCheck(){
+        Rule rule = this.findRule(RULESET,"PrintStackTraceCalledWithoutArgumentCheck");
+        runTests(rule,"PrintStackTraceCalledWithoutArgumentCheck");
+    }
+
+    @Test
+    public void testMainInServletCheck(){
+        Rule rule = this.findRule(RULESET,"MainInServletCheck");
+        runTests(rule,"MainInServletCheck");
+    }
 }

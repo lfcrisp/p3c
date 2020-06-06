@@ -746,4 +746,16 @@
     <entry key="java.zyzx.RSAUsesOAEPCheck.rule.msg">
         <![CDATA[说明：根据中移在线代码规约：加密RSA算法应始终包含OAEP（最优非对称加密填充）.]]>
     </entry>
+    <entry key="java.zyzx.ServletMethodsExceptionsThrownCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：不应该从servlet方法抛出异常.]]>
+    </entry>
+    <entry key="java.zyzx.PublicStaticMutableMembersCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：可变字段不应为“public static”.]]>
+    </entry>
+    <entry key="java.zyzx.PrintStackTraceCalledWithoutArgumentCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：Throwable.printStackTrace(...)会打印异常信息，但也会暴露敏感信息.]]>
+    </entry>
+    <entry key="java.zyzx.MainInServletCheck.rule.msg">
+        <![CDATA[说明：根据中移在线代码规约：程序中不应有main方法.]]>
+    </entry>
 </properties>

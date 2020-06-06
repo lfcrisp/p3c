@@ -2234,6 +2234,135 @@ Cipher rsa = javax.crypto.Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADD
 ]]>
         </example>
     </rule>
+    <rule name="ServletMethodsExceptionsThrownCheck"
+          language="java"
+          message="java.zyzx.ServletMethodsExceptionsThrownCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.ServletMethodsExceptionsThrownCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+即使servlet中方法的签名包括throws IOException, ServletException，但抛出此类异常也是一个坏主意。无法捕获servlet中的异常可能会使系统处于易受攻击的状态，可能导致拒绝服务攻击或敏感信息的暴露，因为当servlet引发异常时，servlet容器通常会将调试信息发送回给用户。这些信息对于攻击者可能非常有价值。
+
+此规则检查在servlet类中显式处理的名为“ do*”的方法中的所有异常。
+Negative example:
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  String ip = request.getRemoteAddr();
+  InetAddress addr = InetAddress.getByName(ip); // Noncompliant; getByName(String) throws UnknownHostException
+  //...
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  try {
+    String ip = request.getRemoteAddr();
+    InetAddress addr = InetAddress.getByName(ip);
+    //...
+  }
+  catch (UnknownHostException uhex) {
+    //...
+  }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="PublicStaticMutableMembersCheck"
+          language="java"
+          message="java.zyzx.PublicStaticMutableMembersCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PublicStaticMutableMembersCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+
+Negative example:
+
+public interface MyInterface {
+  public static String [] strings; // Noncompliant
+}
+
+public class A {
+  public static String [] strings1 = {"first","second"};  // Noncompliant
+  public static String [] strings2 = {"first","second"};  // Noncompliant
+  public static List<String> strings3 = new ArrayList<>();  // Noncompliant
+  // ...
+}
+]]>
+        </example>
+    </rule>
+    <rule name="PrintStackTraceCalledWithoutArgumentCheck"
+          language="java"
+          message="java.zyzx.PrintStackTraceCalledWithoutArgumentCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.PrintStackTraceCalledWithoutArgumentCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+Throwable.printStackTrace(...)将a Throwable及其堆栈跟踪打印到某些流。默认情况下，该流 System.Err可能会无意间公开敏感信息。
+
+应该使用记录器来打印Throwables，因为它们具有许多优点：
+
+用户能够轻松检索日志。
+日志消息的格式统一，并且允许用户轻松浏览日志。
+当printStackTrace不带参数使用时（即，将堆栈跟踪打印到默认流时），此规则会引起问题。
+Negative example:
+
+try {
+  /* ... */
+} catch(Exception e) {
+  e.printStackTrace();        // Noncompliant
+}
+]]>
+        </example>
+        <example>
+            <![CDATA[
+Positive example:
+
+try {
+  /* ... */
+} catch(Exception e) {
+  LOGGER.log("context", e);
+}
+]]>
+        </example>
+    </rule>
+    <rule name="MainInServletCheck"
+          language="java"
+          message="java.zyzx.MainInServletCheck.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.zyzx.MainInServletCheck">
+        <!--级别，1强制，2推荐，3参考-->
+        <priority>2</priority>
+
+        <example>
+            <![CDATA[
+main在Web应用程序中没有理由要有一种方法。它可能在应用程序开发期间用于调试很有用，但是这种方法永远不要投入生产。在mainWeb应用程序中使用一种方法为攻击者可能永远无法到达的应用程序逻辑打开了一扇门（但请注意，如果这样做！），但这是一个草率的实践，表明可能还存在其他问题。
+
+Negative example:
+
+public class MyServlet extends HttpServlet {
+  public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    if (userIsAuthorized(req)) {
+      updatePrices(req);
+    }
+  }
+
+  public static void main(String[] args) { // Noncompliant
+    updatePrices(req);
+  }
+}
+]]>
+        </example>
+    </rule>
 
 
 </ruleset>
