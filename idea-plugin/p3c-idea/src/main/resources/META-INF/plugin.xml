@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.alibaba.p3c.smartfox</id>
-    <name>Zyzx Java Coding Guidelines</name>
+    <name>Java Codeing Standard</name>
     <description>中移在线代码规约插件.</description>
 
     <change-notes>
@@ -8,7 +8,7 @@
          <ul>
         10.0.0
         <li>本插件基于Alibaba Java Coding Guidelines实现</li>
-        <li>现根据中移在线Sonar规则，加入了目前公司在用的64条Bug级别的规则</li>
+        <li>现根据中移在线Sonar规则，加入了目前公司在用的64条Bug级别的规则和10条漏洞级别的规则</li>
         <li>中移在线规则</li>
         <li>compareTo可能返回不是具体的值（除0外），建议用 >0、<0、=0)</li>
         <li>Double.longBitsToDouble返回给定的位所代表的double值,需要一个64位的long类型参数</li>
