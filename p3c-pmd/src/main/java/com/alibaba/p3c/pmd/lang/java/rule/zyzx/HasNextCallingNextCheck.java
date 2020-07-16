@@ -19,6 +19,7 @@ public class HasNextCallingNextCheck extends AbstractAliRule {
     private static final String CLASSORINTERFACE = "ClassOrInterfaceBodyDeclaration";
     private static final String IFSTATEMENTNAME = "ClassOrInterfaceBodyDeclaration/MethodDeclaration/Block/BlockStatement/Statement/IfStatement/Expression/EqualityExpression/PrimaryExpression/PrimaryPrefix/Name";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CLASSORINTERFACE);

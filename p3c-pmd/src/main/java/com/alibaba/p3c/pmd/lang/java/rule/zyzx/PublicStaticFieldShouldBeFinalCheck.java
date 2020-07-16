@@ -17,6 +17,7 @@ public class PublicStaticFieldShouldBeFinalCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration[@SyntacticallyFinal='false' and @SyntacticallyPublic='true']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

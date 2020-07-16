@@ -18,6 +18,7 @@ public class ImmediateReverseBoxingCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='func']]/Block/BlockStatement/LocalVariableDeclaration/VariableDeclarator/VariableDeclaratorId[@Image='dIntValue']";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

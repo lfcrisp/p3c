@@ -17,6 +17,7 @@ public class ParameterReassignedToCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement/Statement/StatementExpression/Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='Integer.toString']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

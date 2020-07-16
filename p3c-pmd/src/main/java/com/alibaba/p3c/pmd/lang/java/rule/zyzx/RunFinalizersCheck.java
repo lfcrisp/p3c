@@ -18,6 +18,7 @@ public class RunFinalizersCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'runFinalizersOnExit')]";
 
+    @Override
     public Object visit(ASTBlockStatement node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -17,6 +17,7 @@ public class UnusedReturnedDataCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//Expression[./Expression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'readLine')]]";
 
+    @Override
     public Object visit(ASTPrimaryExpression node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -19,6 +19,7 @@ public class PrintStackTraceCalledWithoutArgumentCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//Block/BlockStatement/Statement/TryStatement/CatchStatement[./Block/BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.printStackTrace')]]";
 
+    @Override
     public Object visit(ASTCatchStatement node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

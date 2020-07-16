@@ -18,6 +18,7 @@ public class ThreadRunCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "Block[./BlockStatement/LocalVariableDeclaration/Type/ReferenceType/ClassOrInterfaceType[@Image='Thread']]/BlockStatement/Statement//Name[contains(@Image,'.run')]";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

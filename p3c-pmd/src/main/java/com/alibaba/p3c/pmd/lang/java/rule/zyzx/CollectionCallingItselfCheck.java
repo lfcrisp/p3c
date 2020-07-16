@@ -19,6 +19,7 @@ public class CollectionCallingItselfCheck extends AbstractAliRule {
 
     private static final String LISTNAME = "Block/BlockStatement/LocalVariableDeclaration[./Type//ClassOrInterfaceType[@Image='List']]/VariableDeclarator/VariableDeclaratorId";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(LISTNAME);

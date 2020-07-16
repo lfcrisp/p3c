@@ -19,6 +19,7 @@ public class ScheduledThreadPoolExecutorZeroCheck extends AbstractAliRule {
     private static final String CHECKMETHODNUM = "BlockStatement[./LocalVariableDeclaration//AllocationExpression[./ClassOrInterfaceType[@Image='ScheduledThreadPoolExecutor']]//Literal[@Image='0']]";
     private static final String CHECKOTHERMETHODNUM = "//BlockStatement[./Statement/StatementExpression//Name[contains(@Image,'setCorePoolSize')]]//Literal[@Image= '0']";
 
+    @Override
     public Object visit(ASTBlock node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

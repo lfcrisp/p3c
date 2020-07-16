@@ -19,6 +19,7 @@ public class StaticMultithreadedUnsafeFieldsCheck extends AbstractAliRule {
     private static final String CHECKMETHODNUMSIMPLEDATEFORMAT = "//ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='true']/Type/ReferenceType/ClassOrInterfaceType[@Image='SimpleDateFormat']";
     private static final String CHECKMETHODNUMCALENDAR = "//ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='true']/Type/ReferenceType/ClassOrInterfaceType[@Image='Calendar']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotationsSimpleDateFormat = node.findChildNodesWithXPath(CHECKMETHODNUMSIMPLEDATEFORMAT);

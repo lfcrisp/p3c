@@ -18,6 +18,7 @@ public class ObjectFinalizeOverloadedCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='finalize']]";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

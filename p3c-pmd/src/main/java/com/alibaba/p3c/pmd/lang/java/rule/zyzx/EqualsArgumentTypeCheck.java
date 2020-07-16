@@ -18,6 +18,7 @@ public class EqualsArgumentTypeCheck extends AbstractAliRule {
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='equals']]/Block/BlockStatement/Statement[./IfStatement[@Else='false']]";
     private static final String CHECKMETHODNUM_BEGIN = "//MethodDeclaration[./MethodDeclarator[@Image='equals']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM_BEGIN);

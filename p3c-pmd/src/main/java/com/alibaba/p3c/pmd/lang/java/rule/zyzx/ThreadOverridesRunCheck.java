@@ -20,6 +20,7 @@ public class ThreadOverridesRunCheck extends AbstractAliRule {
     private static final String CHECKMETHODNUM_RU = "ClassOrInterfaceDeclaration[./ImplementsList/ClassOrInterfaceType[@Image='Runnable']]";
     private static final String CHECKMETHODNUM_RUNNABLE = "ClassOrInterfaceDeclaration[./ImplementsList/ClassOrInterfaceType[@Image='Runnable']]/ClassOrInterfaceBody[./ClassOrInterfaceBodyDeclaration//Name[@Image='Override']][./ClassOrInterfaceBodyDeclaration//MethodDeclarator[@Image='run']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotationsTh = node.findChildNodesWithXPath(CHECKMETHODNUM_TH);

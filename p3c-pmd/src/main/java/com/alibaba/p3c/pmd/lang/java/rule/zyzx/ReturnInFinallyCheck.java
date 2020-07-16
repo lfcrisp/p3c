@@ -20,6 +20,7 @@ public class ReturnInFinallyCheck extends AbstractAliRule {
     private static final String CHECKNUM = "//FinallyStatement//Statement/BreakStatement";
     private static final String THROWNUM = "//FinallyStatement//Statement/ThrowStatement";
 
+    @Override
     public Object visit(ASTTryStatement node, Object data) {
         try {
             List<Node> returnNum = node.findChildNodesWithXPath(RETURNNUM);

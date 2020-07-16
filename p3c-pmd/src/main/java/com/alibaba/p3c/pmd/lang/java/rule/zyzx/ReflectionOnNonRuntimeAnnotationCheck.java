@@ -17,6 +17,7 @@ public class ReflectionOnNonRuntimeAnnotationCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement/Statement/IfStatement/Expression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'m.isAnnotationPresent')]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -18,6 +18,7 @@ public class NonSerializableWriteCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement/Statement/StatementExpression/PrimaryExpression[./PrimaryPrefix/Name[contains(@Image,'.writeObject')]]/PrimarySuffix//Name[@Image='veg']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

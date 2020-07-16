@@ -20,6 +20,7 @@ public class MethodNamedHashcodeOrEqualCheck extends AbstractAliRule {
     private static final String TOSTRING_CHECKMETHODNUM = "//ClassOrInterfaceBodyDeclaration[./MethodDeclaration/MethodDeclarator[@Image='toString']][not(./Annotation[@Image=''])]";
     private static final String HASHCODE_CHECKMETHODNUM = "//ClassOrInterfaceBodyDeclaration[./MethodDeclaration/MethodDeclarator[@Image='hashCode']][not(./Annotation[@Image=''])]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotationsEquals = node.findChildNodesWithXPath(EQUALS_CHECKMETHODNUM);

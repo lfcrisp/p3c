@@ -17,6 +17,7 @@ public class PreparedStatementAndResultSetCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "Block[./BlockStatement/LocalVariableDeclaration[./Type[@TypeImage='ResultSet' or @TypeImage='PreparedStatement']]]//PrimaryPrefix/Literal[@Image='0']";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

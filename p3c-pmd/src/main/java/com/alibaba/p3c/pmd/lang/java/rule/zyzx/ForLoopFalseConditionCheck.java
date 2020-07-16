@@ -19,6 +19,7 @@ public class ForLoopFalseConditionCheck extends AbstractAliRule {
     private static final String CHECKMETHODNUM1 = "//MethodDeclaration/Block/BlockStatement/Statement/ForStatement/ForInit/LocalVariableDeclaration/VariableDeclarator/VariableInitializer/Expression/PrimaryExpression/PrimaryPrefix/Literal";
     private static final String CHECKMETHODNUM2 = "//MethodDeclaration/Block/BlockStatement/Statement/ForStatement/Expression/RelationalExpression/PrimaryExpression/PrimaryPrefix/Literal";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations1 = node.findChildNodesWithXPath(CHECKMETHODNUM1);

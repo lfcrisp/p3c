@@ -20,6 +20,7 @@ public class CastArithmeticOperandCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement[./LocalVariableDeclaration/Type/PrimitiveType[@Image='long']][./LocalVariableDeclaration/VariableDeclarator/VariableDeclaratorId[@Image='millisInYear']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

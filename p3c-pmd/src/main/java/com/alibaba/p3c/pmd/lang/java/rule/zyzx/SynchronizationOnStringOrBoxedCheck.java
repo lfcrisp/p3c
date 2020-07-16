@@ -17,6 +17,7 @@ public class SynchronizationOnStringOrBoxedCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement/Statement/SynchronizedStatement/Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='sLock']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

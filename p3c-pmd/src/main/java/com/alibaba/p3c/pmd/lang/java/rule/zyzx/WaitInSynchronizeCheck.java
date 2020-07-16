@@ -17,6 +17,7 @@ public class WaitInSynchronizeCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "MethodDeclaration[not(@Synchronized='true')][//Name[contains(@Image,'wait')]]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

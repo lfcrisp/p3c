@@ -19,6 +19,7 @@ public class ObjectFinalizeOverridenCallsSuperFinalizeCheck extends AbstractAliR
     private static final String CHECKMETHODNUM = "MethodDeclaration[./MethodDeclarator[@Image='finalize']]/Block/BlockStatement[last()]/Statement[./StatementExpression//PrimaryPrefix[@SuperModifier='true']]/StatementExpression[./PrimaryExpression/PrimarySuffix[@Image='finalize']]";
     private static final String CHECKMETHODNUM_BEGIN = "MethodDeclaration[./MethodDeclarator[@Image='finalize']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM_BEGIN);

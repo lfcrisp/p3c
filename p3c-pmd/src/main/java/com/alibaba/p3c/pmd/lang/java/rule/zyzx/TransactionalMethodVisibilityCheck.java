@@ -18,6 +18,7 @@ public class TransactionalMethodVisibilityCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceBodyDeclaration[./Annotation/MarkerAnnotation/Name[@Image='Transactional']][./MethodDeclaration[not(@Public='true')]]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

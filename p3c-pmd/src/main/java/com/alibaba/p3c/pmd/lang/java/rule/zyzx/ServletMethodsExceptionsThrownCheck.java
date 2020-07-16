@@ -23,6 +23,7 @@ public class ServletMethodsExceptionsThrownCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[contains(@Image,'do')] and ./NameList/Name[contains(@Image,'Exception')]]/Block";
 
+    @Override
     public Object visit(ASTBlockStatement node, Object data) {
         try {
             Boolean flag = true;

@@ -17,6 +17,7 @@ public class ClassComparedByNameCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "IfStatement/Expression/PrimaryExpression[./PrimarySuffix[@Image='equals']][./PrimarySuffix/Arguments//Name[contains(@Image,'Class')]]";
 
+    @Override
     public Object visit(ASTStatement node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

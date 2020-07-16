@@ -17,6 +17,7 @@ public class GetRequestedSessionIdCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//Expression[./PrimaryExpression/PrimaryPrefix/Name[ends-with(@Image,'.getRequestedSessionId')]]";
 
+    @Override
     public Object visit(ASTExpression node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

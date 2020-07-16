@@ -18,6 +18,7 @@ public class ToStringReturningNullCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "MethodDeclaration[./MethodDeclarator[@Image='toString' or @Image='clone']]//ReturnStatement//Literal/NullLiteral[@Image='']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

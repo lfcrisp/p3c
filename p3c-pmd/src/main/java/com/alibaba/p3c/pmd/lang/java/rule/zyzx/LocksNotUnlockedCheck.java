@@ -18,6 +18,7 @@ public class LocksNotUnlockedCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration/Block[./BlockStatement/Statement/StatementExpression//Name[contains(@Image,'.lock')]]//IfStatement/Statement/Block[//Name[contains(@Image,'.unloc')]]";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -18,6 +18,7 @@ public class InnerClassOfNonSerializableCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "ClassOrInterfaceBodyDeclaration[./ClassOrInterfaceDeclaration[@Static='false']/ImplementsList/ClassOrInterfaceType[@Image='Serializable']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

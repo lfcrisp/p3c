@@ -18,6 +18,7 @@ public class InvalidDateValuesCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "BlockStatement[./Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'.setMonth')]]//Literal[@Image='12']";
 
+    @Override
     public Object visit(ASTBlock node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

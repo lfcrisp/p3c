@@ -17,6 +17,7 @@ public class RSAUsesOAEPCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceDeclaration[@Image='Watermelon']/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration[./Type/ReferenceType/ClassOrInterfaceType[@Image='Cipher']]/VariableDeclarator/VariableInitializer/Expression/PrimaryExpression/PrimarySuffix/Arguments//Literal[contains(@Image,'RSA') and not(contains(@Image,'OAEP'))]";
 
+    @Override
     public Object visit(ASTLiteral node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -17,6 +17,7 @@ public class CollectionInappropriateCallsCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]//BlockStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[@Image='map.remove']";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

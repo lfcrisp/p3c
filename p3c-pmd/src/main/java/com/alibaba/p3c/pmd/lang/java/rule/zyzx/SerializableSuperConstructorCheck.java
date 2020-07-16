@@ -18,6 +18,7 @@ public class SerializableSuperConstructorCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceBodyDeclaration/ClassOrInterfaceDeclaration[@Image='Watermelon'][./ExtendsList/ClassOrInterfaceType[@Image='Fruit']][./ImplementsList/ClassOrInterfaceType[@Image='Serializable']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);
