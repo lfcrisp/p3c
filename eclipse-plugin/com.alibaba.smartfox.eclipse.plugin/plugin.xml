@@ -10,7 +10,7 @@
                 id="com.alibaba.smartfox.eclipse.ui">
         </category>
         <view
-                name="P3C Results"
+                name="JCS Results"
                 allowMultiple="false"
                 icon="icons/view/smartfox_logo.png"
                 category="com.alibaba.smartfox.eclipse.ui"

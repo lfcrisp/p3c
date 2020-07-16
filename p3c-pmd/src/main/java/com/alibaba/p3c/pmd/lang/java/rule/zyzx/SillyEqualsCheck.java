@@ -19,6 +19,7 @@ public class SillyEqualsCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//IfStatement/Expression/PrimaryExpression[./PrimaryPrefix/Name[contains(@Image,'.equals')]]/PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral";
 
+    @Override
     public Object visit(ASTNullLiteral node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

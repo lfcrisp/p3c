@@ -17,6 +17,7 @@ public class AbsOnNegativeCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "Block/BlockStatement/Statement/IfStatement/Expression/RelationalExpression/PrimaryExpression[./PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'.hashCode')]]/PrimaryPrefix/Name[contains(@Image,'.abs')]";
 
+    @Override
     public Object visit(ASTMethodDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

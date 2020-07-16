@@ -18,6 +18,7 @@ public class PublicStaticMutableMembersCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceDeclaration[@Image='Watermelon']/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration//FieldDeclaration/VariableDeclarator[./VariableDeclaratorId[contains(@Image,'strings')]]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -18,6 +18,7 @@ public class ClassVariableVisibilityCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceDeclaration[@Image='Watermelon']/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration/VariableDeclarator[./VariableDeclaratorId[@Image='firstName']]";
 
+    @Override
     public Object visit(ASTVariableDeclarator node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

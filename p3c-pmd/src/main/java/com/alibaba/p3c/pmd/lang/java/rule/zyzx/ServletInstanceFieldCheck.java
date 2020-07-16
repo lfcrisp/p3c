@@ -18,6 +18,7 @@ public class ServletInstanceFieldCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//TypeDeclaration/ClassOrInterfaceDeclaration/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/ClassOrInterfaceDeclaration[./ExtendsList/ClassOrInterfaceType[@Image='HttpServlet' or @Image='Action']]/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false' and @Final='false']";
 
+    @Override
     public Object visit(ASTCompilationUnit node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

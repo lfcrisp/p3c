@@ -17,6 +17,7 @@ public class ShiftOnIntOrLongCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement[//PrimitiveType[@Image='int']]/LocalVariableDeclaration/VariableDeclarator[./VariableInitializer/Expression/ShiftExpression/PrimaryExpression/PrimaryPrefix/Literal[@Image='32']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

@@ -19,6 +19,7 @@ public class ThreadSleepCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "SynchronizedStatement[./Block//Name[contains(@Image,'.sleep')]]";
 
+    @Override
     public Object visit(ASTStatement node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

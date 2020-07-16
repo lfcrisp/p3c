@@ -21,6 +21,7 @@ public class IteratorNextExceptionCheck extends AbstractAliRule {
     private static final String IFSTATEMENTNAME = "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration/Block/BlockStatement/Statement/IfStatement/Expression/UnaryExpressionNotPlusMinus/PrimaryExpression/PrimaryPrefix/Name";
     private static final String RETURNSTATEMENTNAME = "ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration/Block/BlockStatement/Statement/IfStatement/Statement/Block/BlockStatement/Statement/ThrowStatement/Expression/PrimaryExpression/PrimaryPrefix/AllocationExpression/ClassOrInterfaceType";
 
+    @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CLASSORINTERFACE);

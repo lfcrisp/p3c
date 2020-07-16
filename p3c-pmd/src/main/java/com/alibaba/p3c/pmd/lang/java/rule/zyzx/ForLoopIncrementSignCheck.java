@@ -17,6 +17,7 @@ public class ForLoopIncrementSignCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "ForStatement[./ForUpdate//PostfixExpression[@Image='--']]";
 
+    @Override
     public Object visit(ASTStatement node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

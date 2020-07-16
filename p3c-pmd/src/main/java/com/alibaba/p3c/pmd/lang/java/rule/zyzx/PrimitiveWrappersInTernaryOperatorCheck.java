@@ -17,6 +17,7 @@ public class PrimitiveWrappersInTernaryOperatorCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "ClassOrInterfaceDeclaration[@Image='Watermelon']/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/FieldDeclaration/VariableDeclarator[./VariableDeclaratorId[@Image='n']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

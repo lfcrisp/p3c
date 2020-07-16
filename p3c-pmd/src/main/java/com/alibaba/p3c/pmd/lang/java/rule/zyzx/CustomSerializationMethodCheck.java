@@ -19,6 +19,7 @@ public class CustomSerializationMethodCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "ClassOrInterfaceDeclaration[@Image='Watermelon'][./ImplementsList/ClassOrInterfaceType[@Image='Serializable']]/ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/MethodDeclaration[not(@Private='true')]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

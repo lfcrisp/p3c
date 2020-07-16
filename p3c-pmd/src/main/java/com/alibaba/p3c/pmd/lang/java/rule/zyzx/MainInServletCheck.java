@@ -19,6 +19,7 @@ public class MainInServletCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//ClassOrInterfaceDeclaration[//MethodDeclaration/MethodDeclarator[@Image='main']]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

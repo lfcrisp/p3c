@@ -18,6 +18,7 @@ public class MethodNamedEqualsCheck extends AbstractAliRule {
     private static final String MARKERANNOTATION = "Annotation/MarkerAnnotation/Name";
     private static final String METHODDECLARATOR = "MethodDeclaration";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotation = node.findChildNodesWithXPath(MARKERANNOTATION);

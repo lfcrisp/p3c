@@ -21,6 +21,7 @@ public class LongBitsToDoubleOnIntCheck extends AbstractAliRule {
     private static final String LONGBITSTOTYPE = "Expression/PrimaryExpression/PrimaryPrefix";
     private static final String PARAMETERTYPE = "Expression/PrimaryExpression/PrimarySuffix/Arguments/ArgumentList/Expression/PrimaryExpression/PrimaryPrefix";
 
+    @Override
     public Object visit(ASTVariableInitializer node, Object data) {
         try {
             List<Node> longBitsType = node.findChildNodesWithXPath(LONGBITSTOTYPE);

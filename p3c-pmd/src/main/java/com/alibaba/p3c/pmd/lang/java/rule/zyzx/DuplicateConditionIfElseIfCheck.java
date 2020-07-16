@@ -17,6 +17,7 @@ public class DuplicateConditionIfElseIfCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//MethodDeclaration[./MethodDeclarator[@Image='Watermelon']]/Block/BlockStatement/Statement//IfStatement/Statement/StatementExpression/PrimaryExpression/PrimaryPrefix/Name[contains(@Image,'WindowTo')]";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

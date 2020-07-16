@@ -20,6 +20,7 @@ public class StringBufferAndBuilderWithCharCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "BlockStatement[./LocalVariableDeclaration//ClassOrInterfaceType[@Image='StringBuffer' or 'StringBuilder ']]//Literal[@CharLiteral='true']";
 
+    @Override
     public Object visit(ASTBlock node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);

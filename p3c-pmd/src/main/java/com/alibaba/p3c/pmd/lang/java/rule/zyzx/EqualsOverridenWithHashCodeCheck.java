@@ -17,6 +17,7 @@ public class EqualsOverridenWithHashCodeCheck extends AbstractAliRule {
 
     private static final String CLASSORINTERFACE = "ClassOrInterfaceBodyDeclaration";
 
+    @Override
     public Object visit(ASTClassOrInterfaceBody node, Object data) {
         try {
             Boolean hasEquals = null;

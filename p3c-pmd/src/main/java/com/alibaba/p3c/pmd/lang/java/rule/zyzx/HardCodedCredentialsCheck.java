@@ -18,6 +18,7 @@ public class HardCodedCredentialsCheck extends AbstractAliRule {
 
     private static final String CHECKMETHODNUM = "//VariableDeclarator[./VariableDeclaratorId[contains(@Image,\"password\")]]/VariableInitializer/Expression/PrimaryExpression/PrimaryPrefix/Literal[@StringLiteral='true']";
 
+    @Override
     public Object visit(ASTLiteral node, Object data) {
         try {
             List<Node> markerAnnotations = node.findChildNodesWithXPath(CHECKMETHODNUM);
